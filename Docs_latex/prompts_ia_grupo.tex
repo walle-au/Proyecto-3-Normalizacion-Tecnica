@@ -1,0 +1,51 @@
+% Registro de uso de IA (exigido por el enunciado)
+El enunciado permite usar herramientas de inteligencia artificial si la información se verifica con fuentes confiables, y exige incluir íntegramente los prompts. En este proyecto se usó \textbf{Claude} (Anthropic), en la herramienta Claude Code, como asistente para buscar fuentes, organizar la investigación, programar los cálculos y redactar las láminas y el documento. Toda la información técnica y normativa se contrastó con las fuentes citadas: fichas de los fabricantes, La Gaceta, ARESEP, INTECO, el ICE y el NEC. Los datos que no se pudieron verificar se marcaron como supuestos \supuesto{} o se eliminaron del texto; por ejemplo, la potencia V2L del Ioniq~5.
+
+\subsection*{Prompt del grupo a Claude (íntegro)}
+\begin{quote}\itshape
+hola en la carpeta anterior esta la estructura de los 2 proyectos anteriores, revisalos para que mires como se trabajo y como debes trabjarlo para este tercero, creo que este tercero se parece mas al 1ro, el caso es que necesito que lo hagas, busca en linea un posible lugar que sea viable, si puedes encontrar los planos o descargarlo tu mismo, entonces porfavor empieza
+\end{quote}
+Ante la pregunta del asistente sobre el sitio, el grupo eligió la opción ``Parqueo UTN/CAA (Recomendado)''.
+
+\subsection*{Consultas de búsqueda generadas por la herramienta}
+Para trazabilidad, se listan las consultas que la herramienta hizo en la web. Sus resultados se usaron solo después de leer la fuente primaria citada.
+{\small
+\begin{enumerate}
+\item planos tipo vivienda interés social Costa Rica pdf descargar BANHVI INVU
+\item planos arquitectónicos públicos licitación SICOP estacionamiento Costa Rica pdf planta parqueo
+\item Ley 9518 incentivos transporte eléctrico reforma Ley 10209 centros de recarga artículo
+\item Decreto Ejecutivo 41642-MINAE reglamento construcción y funcionamiento red centros de recarga eléctrica distribuidoras
+\item INTE N121 INTE N120 norma infraestructura recarga vehículos eléctricos Costa Rica INTECO
+\item ARESEP tarifa centros de recarga rápida vehículos eléctricos 2026 ₡/kWh ICE CNFL
+\item ``41642-MINAE'' centros de recarga reglamento 2019 La Gaceta conectores
+\item ``INTE N121'' OR ``INTE N 121'' OR ``INTE N120'' vehículos eléctricos estaciones de carga señalización
+\item red de carga rápida ICE conectores CCS1 CHAdeMO tipo 2 GB/T cargadores Costa Rica 2026
+\item vehículos eléctricos más vendidos Costa Rica 2026 BYD conector CCS2 tipo 2 mercado
+\item BYD Dolphin Costa Rica ficha técnica puerto de carga GB/T CCS2 tipo 2 kW
+\item cargador rápido DC 60 kW CCS1 GB/T CHAdeMO 480V UL listed datasheet dual connector
+\item ABB Terra 54 UL 480V CCS1 CHAdeMO datasheet input current specifications pdf
+\item Costa Rica cargadores vehículos eléctricos venta wallbox precio ChargePoint ABB Autel distribuidor 2026
+\item ELCO Costa Rica cargador vehículo eléctrico GB/T J1772 modelo kW ficha técnica
+\item 7kW GB/T AC wallbox charger datasheet pdf GB/T 20234.2 IEC 61851-1 single phase 32A CE certified
+\item Autel MaxiCharger AC Elite Business 40A spec sheet pdf UL 2594 OCPP RFID dual
+\item F-150 Lightning Pro Power Onboard 9.6 kW charge another electric vehicle Mobile Power Cord owner manual V2V Ford
+\item vehicle-to-vehicle charging adapter Lucid RangeXchange Cybertruck Powershare V2V GM V2V adapter kW official
+\item Reglamento Ley 7600 Decreto 26831 estacionamiento personas con discapacidad dimensiones 3,30 m 5 \% artículo
+\item Reglamento de Construcciones INVU 2018 dimensiones espacio estacionamiento 2,50 m x 5,00 m pasillo circulación 90 grados
+\item Autel MaxiCharger DC Fast 60kW price USD
+\item Ford Mobile Power Cord F-150 Lightning price accessory 32A 240V 120V
+\item Ley 9518 texto ``centros de recarga'' artículo 30 31 32 33 instituciones públicas estacionamientos preferenciales vehículos eléctricos reglamento 41092
+\item 2024 Hyundai Ioniq 5 long range 77.4 kWh onboard charger 10.9 kW 10-80\% 18 minutes V2L 1.9 kW specifications
+\item 2024 F-150 Lightning extended range 131 kWh usable 19.2 kW onboard charger 48A 11.3 kW DC fast charge 15-80\% 41 minutes specifications
+\item Nissan Leaf S 40 kWh 6.6 kW onboard charger CHAdeMO 50 kW 2023 specifications; Tesla Model Y Long Range onboard charger 11.5 kW 48A 250 kW
+\end{enumerate}}
+
+\subsection*{Verificación aplicada}
+\begin{itemize}
+\item Leyes y decretos: se confirmaron con La Gaceta (Decreto 41428, en \texttt{Datasheets/}) y con dos fuentes independientes para la Ley 10937. Las discrepancias, como el plazo de ARESEP, se declaran en el texto.
+\item Equipos: todos los datos eléctricos de los equipos seleccionados salen de sus fichas en PDF, archivadas en \texttt{Datasheets/}.
+\item Cálculos: se revisaron a mano para un caso de cada tipo (sección~\ref{sec:calc_carga}) y con las tablas del NEC 2020.
+\item Imagen del sitio: se descargó del servicio Esri World Imagery y se georreferenció con la escala del mosaico (0,294~m por píxel) y con las dimensiones conocidas del CAA y de la nave del Proyecto~2.
+\end{itemize}
+
+\textbf{Nota para el grupo:} cada integrante que use IA para su parte de la presentación debe agregar aquí sus propios prompts, íntegros, antes de la entrega.

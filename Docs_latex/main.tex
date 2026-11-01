@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\DeclareUnicodeCharacter{20A1}{\textcent}% símbolo del colón (₡), se imprime como ¢ como en el pliego del ICE
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{siunitx}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,babel}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{titlesec}
+\usepackage{lastpage}
+\usepackage{microtype}
+\usepackage{fancyvrb}
+\usepackage{xurl}
+\usepackage{hyperref}
+\setlength{\emergencystretch}{2em}
+
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+\sisetup{output-decimal-marker={,},group-separator={\,},group-minimum-digits=4,per-mode=symbol}
+\setstretch{1.12}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{EL-4601 Normalización Técnica para Electrónica}
+\rhead{Proyecto No. 3}
+\cfoot{\thepage\ de \pageref{LastPage}}
+\setlength{\headheight}{15pt}
+\fancypagestyle{lscape}{\fancyhf{}\lhead{EL-4601 Normalización Técnica para Electrónica}\rhead{Proyecto No. 3}\cfoot{\thepage\ de \pageref{LastPage}}}
+\titleformat{\section}{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection.}{0.5em}{}
+\captionsetup{font=small,labelfont=bf}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Marca de los supuestos de diseño (Cuadro~\ref{tab:supuestos}).
+\newcommand{\supuesto}{\textsuperscript{\textcolor{orange!80!black}{\textbf{(S)}}}}
+% Lámina A3 en página horizontal
+\newcommand{\lamina}[3]{%
+\begin{landscape}\thispagestyle{lscape}
+\begin{figure}[p]\centering
+\includegraphics[width=\linewidth,height=0.86\textheight,keepaspectratio]{#1}
+\caption{#2}\label{#3}
+\end{figure}
+\end{landscape}}
+
+\begin{document}
+
+% =====================================================================
+\begin{titlepage}
+\centering
+\vspace*{1.2cm}
+{\Large Instituto Tecnológico de Costa Rica\\[0.3cm]}
+{\large Unidad de Ingeniería Electrónica -- Centro Académico de Alajuela\\[1.0cm]}
+{\large EL-4601 Normalización Técnica para Electrónica\\[0.5cm]}
+{\LARGE\bfseries Proyecto No. 3\\[0.35cm]}
+{\LARGE\bfseries Cargadores para vehículos eléctricos\\[0.2cm]}
+{\Large Investigación normativa y diseño en Costa Rica\\[0.4cm]}
+{\large Estación de carga de uso público en el parqueo norte del campus UTN Villa Bonita (CAA-TEC):\\ cuatro puntos de carga en CA y un cargador rápido de CC de \SI{60}{\kilo\watt}\\[1.5cm]}
+
+\begin{tabular}{rl}
+\textbf{Integrantes:} & Walter Alfaro Ulate -- carné 2023073145\\
+& Sebastián Meneses Castillo -- carné 2024139307\\
+& Thomas Reed Víquez -- carné 2023210321\\
+\textbf{Profesor:} & Luis Roberto Pereira Arroyo\\
+\textbf{Fecha:} & 4 de noviembre de 2026\\
+\end{tabular}
+
+\vfill
+{\small Alajuela, Costa Rica -- II Semestre 2026}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+\listoffigures
+\listoftables
+\clearpage
+
+\input{Docs_latex/sec0_resumen.tex}
+\input{Docs_latex/sec1_tecnologias.tex}
+\input{Docs_latex/sec2_normativa.tex}
+\input{Docs_latex/sec3_equipos.tex}
+\input{Docs_latex/sec4_diseno.tex}
+\input{Docs_latex/sec5_analisis.tex}
+\input{Docs_latex/biblio.tex}
+\appendix
+\input{Docs_latex/anexos.tex}
+\section{Registro de uso de inteligencia artificial}
+\label{sec:ia}
+\input{Docs_latex/prompts_ia_grupo.tex}
+
+\end{document}

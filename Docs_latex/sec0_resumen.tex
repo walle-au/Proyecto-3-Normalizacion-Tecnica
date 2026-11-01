@@ -1,0 +1,42 @@
+% =====================================================================
+\section{Resumen ejecutivo}
+
+Este documento investiga las tecnologías y modalidades de carga de vehículos eléctricos (VE), el marco legal y técnico que rige su instalación en Costa Rica, y los equipos y vehículos disponibles. Con esa base, diseña una \textbf{estación de carga de uso público} en el parqueo norte del campus de la Universidad Técnica Nacional (UTN) en Villa Bonita de Alajuela, donde funciona el Centro Académico de Alajuela del TEC (CAA-TEC). Es el mismo campus del Proyecto~2, por lo que se reutilizan los datos verificados del sistema eléctrico: el transformador de pedestal del ICE N.\textsuperscript{o} 119688 (\SI{750}{\kilo\volt\ampere}, 34,5~kV/480Y/277~V), la lámina as-built E01 y el registro fotográfico del 5 de octubre de 2026. La estación se dibujó sobre una imagen satelital descargada para este trabajo (Esri World Imagery, \SI{0.29}{\meter} por píxel).
+
+\textbf{Solución propuesta.}
+\begin{itemize}
+\item Seis espacios de carga en el extremo este de la fila sur del parqueo, con un espacio accesible (Ley 7600).
+\item \textbf{AC-1 y AC-2:} dos cargadores de CA Autel MaxiCharger AC Elite con conector SAE J1772 (Tipo~1), alimentados a 208~V y ajustados a \SI{40}{\ampere} (\SI{8.3}{\kilo\watt}). Tienen listado UL 2594 y UL 2231.
+\item \textbf{AC-3 y AC-4:} dos cargadores de CA con conector GB/T (\SI{32}{\ampere}, \SI{6.7}{\kilo\watt}) para la flota china que se vende oficialmente en el país, como el BYD Dolphin, cuya ficha costarricense declara puerto GB/T. Como no tienen listado UL, llevan aguas arriba un diferencial tipo~B de 30~mA.
+\item \textbf{DC-1:} un cargador rápido Autel MaxiCharger DC Fast de \SI{60}{\kilo\watt} a 480~V con conectores CCS1 y CHAdeMO (UL 2202). Reparte la potencia (30 + \SI{30}{\kilo\watt}) cuando atiende dos vehículos a la vez.
+\item Servicio nuevo e independiente del CAA, desde el nicho del transformador 119688: medición indirecta del ICE, interruptor IP-VE de \SI{200}{\ampere}, alimentador de 3\#3/0 Cu de unos \SI{120}{\meter} \supuesto{} y celda eléctrica en la estación con el tablero TD-VE (480Y/277~V), un transformador seco T-VE de \SI{45}{\kilo\volt\ampere} (480$\Delta$--208Y/120~V) y el tablero TD-AC.
+\item Sistema de gestión de energía (EMS, NEC 625.42) que limita la estación a \SI{60}{\kilo\watt} por medio de OCPP.
+\end{itemize}
+
+\textbf{Resultados principales.}
+\begin{itemize}
+\item Demanda máxima de \SI{94.5}{\kilo\watt} sin gestión y de \SI{60}{\kilo\watt} con el EMS. El alimentador de \#3/0 (\SI{200}{\ampere}) cubre el 125\,\% de la carga continua (\SI{182.8}{\ampere}). La caída de tensión es de 1,54\,\% en el alimentador y de 2,79\,\% en el peor ramal, ambas dentro del criterio de 3\,\% y 5\,\%.
+\item Tiempos de carga del 20 al 80\,\% (cálculo con la curva de aceptación de cada vehículo, sin suponer potencia constante): BYD Dolphin en CA GB/T, 4~h~32~min; Hyundai Ioniq~5, 6~h~12~min en CA y 48~min en DC-1; Ford F-150 Lightning ER, 10~h~30~min en CA y 1~h~21~min en DC-1; Nissan Leaf, 39~min en CHAdeMO.
+\item Corriente de falla de \SI{15.7}{\kilo\ampere} en los bornes del transformador del ICE, \SI{5.8}{\kilo\ampere} en TD-VE y \SI{2.8}{\kilo\ampere} en TD-AC, todas menores que la capacidad interruptiva de cada equipo.
+\item Presupuesto referencial de \textbf{USD~102\,500} (unos ₡51,8 millones) antes de impuestos, con 10\,\% de imprevistos. Con la tarifa T-CO del ICE y sin EMS, el cargo por demanda es el 54\,\% de la factura de la estación. Con el EMS y la tarifa T-CS de las instituciones públicas de educación, el costo de operación baja a unos ₡98/kWh.
+\end{itemize}
+
+\textbf{Compatibilidad: el hallazgo que más influyó en el diseño.} En Costa Rica conviven vehículos con J1772/CCS1 (mercado estadounidense), CHAdeMO (Nissan Leaf usados) y GB/T (vehículos chinos). La red del ICE ofrece CCS1, CHAdeMO y GB/T en CC, y sus estaciones nuevas dan prioridad a CCS1 y GB/T. Ningún cargador de CC con listado UL a 480~V que se revisó ofrece GB/T: el Zerova DS lo incluye solo en su versión IEC de 400~V. Por eso los vehículos GB/T se atienden con cargadores de CA propios, y el diseño no confía en adaptadores que el fabricante no haya aprobado.
+
+\textbf{Viabilidad.} La estación es \textbf{técnicamente viable} con la infraestructura del campus, sujeta al estudio de capacidad del ICE sobre el transformador 119688. En lo económico, \textbf{no se paga como negocio} con los precios de referencia de la red del ICE (₡99,70/kWh en CA y ₡141/min en CC): el mejor caso (T-CS con EMS) recupera la inversión en unos 12 años, y con la mitad del uso supuesto no se recupera. Se recomienda como \textbf{servicio institucional} de movilidad sostenible y ejecutarla con el EMS. El precio medio de equilibrio a 10 años, con una tasa del 8\,\%, es de unos ₡145/kWh. La Ley~10937 (2026) ya permite vender el servicio, pero ARESEP todavía no ha fijado la tarifa de la energía para operadores privados.
+
+\textbf{Supuestos y limitaciones.} No se pudieron obtener la capacidad remanente del transformador del ICE, la posición exacta del nicho en sitio, el texto de las normas INTE N121 y N120 (son de pago) ni cotizaciones locales de los equipos. Estos datos se reemplazaron por supuestos declarados (Cuadro~\ref{tab:supuestos}), marcados en el texto con \supuesto{}.
+
+% =====================================================================
+\section{Objetivos}
+\subsection{Objetivo general}
+Diseñar una estación de carga de vehículos eléctricos de uso público para el parqueo norte del campus UTN Villa Bonita, fundamentada en la normativa costarricense vigente, en los datos reales del sitio y en equipos comerciales cuya compatibilidad con los vehículos del país esté verificada.
+
+\subsection{Objetivos específicos}
+\begin{itemize}[leftmargin=1.2cm]
+\item Explicar y comparar las tecnologías y modalidades de carga, desde la carga residencial a 120~V hasta la carga rápida en CC, la transferencia bidireccional (V2L, V2V, V2H, V2G) y las alternativas emergentes.
+\item Identificar las leyes, reglamentos, normas técnicas y requisitos de la distribuidora, del CFIA, de la municipalidad, de Bomberos y de accesibilidad que aplican al caso, verificando la edición, la vigencia y el carácter obligatorio de cada documento.
+\item Comparar al menos cuatro cargadores y cinco vehículos de distintos fabricantes, y verificar la compatibilidad por conector, versión y mercado.
+\item Diseñar la estación (planta, unifilar, detalles), dimensionar los conductores, las canalizaciones y las protecciones, y calcular la energía, la potencia efectiva y el tiempo de carga.
+\item Elaborar el cuadro de cargas, el cuadro de equipos, la lista de materiales, el presupuesto y el costo de operación, y analizar la viabilidad técnica, económica y regulatoria.
+\end{itemize}

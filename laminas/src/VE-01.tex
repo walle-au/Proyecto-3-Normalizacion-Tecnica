@@ -1,0 +1,201 @@
+\documentclass[border=0pt]{standalone}
+\newcommand{\revlamina}{1}
+\input{lamina_comun.tex}
+% Planta de la estación a escala 1:100 (1 m = 10 mm). Coordenadas internas en metros.
+\tikzset{
+  bol/.style={circle,draw=black,fill=yellow!80!black,line width=0.3pt,inner sep=0pt,minimum size=1.5mm},
+  cota/.style={<->,>={Latex[length=1.4mm]},line width=0.25pt},
+  txt/.style={font=\fontsize{5.5}{6.5}\selectfont,align=center},
+  equ/.style={draw=black,line width=0.4pt},
+}
+\newcommand{\cotah}[4]{\draw[cota] (#1,#3) -- node[fill=white,inner sep=0.5pt,font=\fontsize{5}{6}\selectfont]{#4} (#2,#3);}
+\newcommand{\cotav}[4]{\draw[cota] (#3,#1) -- node[fill=white,inner sep=0.5pt,font=\fontsize{5}{6}\selectfont,rotate=90]{#4} (#3,#2);}
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+\marco
+\node[anchor=north west,font=\fontsize{10}{12}\selectfont\bfseries] at (15,283) {PLANTA DE LA ESTACIÓN DE CARGA -- PARQUEO NORTE, CAMPUS UTN (ESCALA 1:100)};
+
+\begin{scope}[shift={(48,152)},x=10mm,y=10mm]
+% ---------------- base: asfalto, franja verde, isla
+\fill[gray!12] (-3,0) rectangle (25,11.2);
+\fill[green!12] (-3,-4.2) rectangle (25,-1.5);
+\fill[gray!30] (-3,-1.5) rectangle (17.9,0);           % bordillo/isla de concreto 1,5 m
+\draw[line width=0.5pt] (-3,0) -- (25,0);
+\draw[line width=0.5pt] (-3,-1.5) -- (17.9,-1.5);
+\node[txt,anchor=west] at (-2.9,-3.6) {Franja verde existente (zacate)};
+\node[txt,anchor=west] at (-2.3,-2.1) {$\uparrow$ isla de concreto nueva};
+\node[txt] at (11,8.2) {\fontsize{7}{8}\selectfont\bfseries CALLE INTERNA / PASILLO DE CIRCULACIÓN EXISTENTE (doble sentido)};
+\draw[white,line width=1.2pt,dash pattern=on 8mm off 6mm] (-3,8.0) -- (25,8.0);
+\draw[-{Latex[length=3mm]},line width=0.8pt] (-2.5,9.5) -- (2.5,9.5) node[txt,anchor=west]{\ entrada desde el acceso oeste del campus};
+\draw[{Latex[length=3mm]}-,line width=0.8pt] (17,6.5) -- (22,6.5) node[txt,anchor=west]{\ salida};
+% espacios existentes al oeste
+\foreach \x in {-3,-0.5}{\draw[line width=0.3pt,dashed,gray] (\x,0) -- (\x,5);}
+\node[txt,gray] at (-1.75,2.5) {espacio\\existente};
+
+% ---------------- espacios de carga (demarcación verde)
+\foreach \a/\b/\c in {0/3.3/ac,3.3/5.9/ac,5.9/8.5/gbt,8.5/11.1/gbt,11.1/13.9/dcc,13.9/16.7/dcc}{
+  \fill[\c!14] (\a,0) rectangle (\b,5);
+  \draw[white,line width=1.1pt] (\a,0) -- (\a,5);
+}
+\draw[white,line width=1.1pt] (16.7,0) -- (16.7,5);
+% espacio accesible (Ley 7600): franja de transferencia rayada
+\fill[pattern=north east lines,pattern color=blue!60] (2.1,0) rectangle (3.3,5);
+\node[circle,fill=blue!70!black,text=white,font=\fontsize{9}{9}\selectfont\bfseries,inner sep=1.2pt] at (1.05,3.3) {\textsf{\&}};
+\node[txt,blue!70!black] at (1.05,2.4) {ACCESIBLE\\Ley 7600};
+% topes de rueda
+\foreach \c in {1.05,4.6,7.2,9.8,12.5,15.3}{\fill[gray!70] (\c-0.9,0.65) rectangle (\c+0.9,0.85);}
+% rótulos de espacio
+\node[txt] at (1.05,4.4) {\textbf{P1}\\AC-1 -- J1772};
+\node[txt] at (4.6,3.2) {\textbf{P2}\\AC-2\\J1772\\8,3 kW};
+\node[txt] at (7.2,3.2) {\textbf{P3}\\AC-3\\GB/T\\6,7 kW};
+\node[txt] at (9.8,3.2) {\textbf{P4}\\AC-4\\GB/T\\6,7 kW};
+\node[txt] at (12.5,3.2) {\textbf{P5}\\DC-1\\CCS1\\$\le$60 kW};
+\node[txt] at (15.3,3.2) {\textbf{P6}\\DC-1\\CHAdeMO\\$\le$60 kW};
+\foreach \c in {4.6,7.2,9.8,12.5,15.3}{\node[txt,font=\fontsize{9}{9}\selectfont\bfseries,green!40!black] at (\c,1.5) {VE};}
+\node[txt,font=\fontsize{9}{9}\selectfont\bfseries,green!40!black] at (1.05,1.5) {VE};
+
+% zona de trabajo y peatonal (no estacionar)
+\fill[pattern=crosshatch,pattern color=red!50] (16.7,0) rectangle (21.6,1.1);
+\fill[pattern=north west lines,pattern color=gray] (16.7,1.1) rectangle (17.9,5);
+\node[txt,red!70!black,fill=white,inner sep=0.5pt] at (20.3,0.55) {espacio de trabajo 1,1 m (NEC 110.26)};
+\node[txt,rotate=90] at (17.3,3.1) {circulación peatonal\\no estacionar};
+
+% ---------------- celda eléctrica
+\fill[gray!40] (17.9,-2.6) rectangle (21.6,0);
+\draw[line width=0.6pt] (17.9,-2.6) rectangle (21.6,0);
+\draw[equ,fill=red!15] (18.1,-0.55) rectangle (18.9,-0.05) node[midway,txt,font=\fontsize{4.5}{5}\selectfont]{TD-VE};
+\draw[equ,fill=orange!20] (19.1,-1.0) rectangle (20.1,-0.05) node[midway,txt,font=\fontsize{4.5}{5}\selectfont]{T-VE\\45 kVA};
+\draw[equ,fill=blue!12] (20.3,-0.5) rectangle (20.9,-0.05) node[midway,txt,font=\fontsize{4.5}{5}\selectfont]{TD-\\AC};
+\draw[equ,fill=gray!20] (21.0,-0.35) rectangle (21.45,-0.05) node[midway,txt,font=\fontsize{4}{5}\selectfont]{SPD};
+\node[circle,draw=black,fill=red,inner sep=0pt,minimum size=2.2mm] (EPO1) at (18.3,-1.4) {};
+\node[txt,anchor=west] at (18.45,-1.4) {EPO-1};
+\node[txt,anchor=north] at (19.75,-1.75) {\textbf{CELDA ELÉCTRICA}\\losa 3,7 $\times$ 2,6 m\\cerramiento de malla h 2,1 m};
+% varillas de tierra
+\foreach \x in {18.1,21.4}{\draw[tierra,line width=0.6pt] (\x-0.12,-2.5) -- (\x+0.12,-2.5); \draw[tierra,line width=0.6pt] (\x-0.08,-2.56) -- (\x+0.08,-2.56); \draw[tierra,line width=0.6pt] (\x,-2.5) -- (\x,-2.42);}
+\draw[tierra,line width=0.5pt,dashed] (18.1,-2.42) -- (21.4,-2.42);
+
+% ---------------- pedestales y cargador rápido
+\draw[equ,fill=ac!35] (3.05,-0.9) rectangle (3.55,-0.3);
+\node[txt,anchor=north] at (3.3,-1.55) {PED-1};
+\draw[equ,fill=ac!70] (2.75,-0.5) rectangle (3.05,-0.2); \node[txt,anchor=east] at (2.7,-0.35) {AC-1};
+\draw[equ,fill=ac!70] (3.55,-0.5) rectangle (3.85,-0.2); \node[txt,anchor=west] at (3.9,-0.35) {AC-2};
+\draw[equ,fill=gbt!35] (8.25,-0.9) rectangle (8.75,-0.3);
+\node[txt,anchor=north] at (8.5,-1.55) {PED-2};
+\draw[equ,fill=gbt!70] (7.95,-0.5) rectangle (8.25,-0.2); \node[txt,anchor=east] at (7.9,-0.35) {AC-3};
+\draw[equ,fill=gbt!70] (8.75,-0.5) rectangle (9.05,-0.2); \node[txt,anchor=west] at (9.1,-0.35) {AC-4};
+\fill[gray!55] (13.2,-1.45) rectangle (14.6,-0.15);
+\draw[equ,fill=dcc!60] (13.49,-0.85) rectangle (14.31,-0.25) node[midway,txt,font=\fontsize{4.5}{5}\selectfont]{DC-1};
+\node[txt,anchor=north] at (13.9,-1.55) {base 1,4 $\times$ 1,3 m};
+% alcance del cable CC (4,6 m)
+\begin{scope}
+\clip (10.6,0) rectangle (17.2,5);
+\draw[dcc,dashed,line width=0.4pt] (13.9,-0.55) circle (4.6);
+\end{scope}
+\node[txt,dcc!80!black,fill=white,inner sep=0.5pt] at (16.15,4.5) {alcance cable 4,6 m};
+
+% ---------------- bolardos, postes, señales, EPO-2
+\foreach \x/\y in {2.75/0.3,3.85/0.3,7.95/0.3,9.05/0.3,13.3/0.3,14.5/0.3,18.2/1.35,19.75/1.35,21.3/1.35,17.1/0.3}{\node[bol] at (\x,\y) {};}
+\foreach \x/\n in {5.9/L-1,11.1/L-2}{
+  \node[circle,draw=black,fill=yellow,inner sep=0pt,minimum size=2.4mm] at (\x,-0.95) {};
+  \draw[line width=0.3pt] (\x-0.25,-0.95) -- (\x+0.25,-0.95) (\x,-1.2) -- (\x,-0.7);
+  \node[txt,anchor=north] at (\x,-1.55) {\n};
+}
+\node[circle,draw=black,fill=red,inner sep=0pt,minimum size=2.2mm] at (16.95,-0.85) {};
+\node[txt,anchor=north] at (16.95,-1.55) {EPO-2};
+\foreach \x/\n in {0.5/SV-1,10.2/SV-2,15.6/SV-3}{
+  \draw[line width=0.4pt,fill=white] (\x-0.2,-1.15) rectangle (\x+0.2,-0.75);
+  \node[font=\fontsize{4}{4}\selectfont\bfseries] at (\x,-0.95) {S};
+  \node[txt,anchor=north] at (\x,-1.55) {\n};
+}
+
+% ---------------- canalizaciones subterráneas
+\draw[ali,line width=1.1pt] (25,-1.0) -- (22.6,-1.0) -- (21.6,-1.0);
+\draw[dcc,line width=0.8pt] (17.9,-0.95) -- (13.9,-0.95) -- (13.9,-0.85);
+\draw[gbt,line width=0.8pt] (17.9,-1.08) -- (8.5,-1.08) -- (8.5,-0.9);
+\draw[ac,line width=0.8pt] (17.9,-1.21) -- (3.3,-1.21) -- (3.3,-0.9);
+\draw[black,line width=0.5pt,densely dashed] (17.9,-1.32) -- (5.9,-1.32) -- (5.9,-1.1);
+\draw[black,line width=0.5pt,densely dashed] (11.1,-1.32) -- (11.1,-1.1);
+\draw[black,line width=0.5pt,densely dashed] (17.9,-1.40) -- (16.95,-1.40) -- (16.95,-1.0);
+\foreach \x/\n in {22.6/R-1,12.4/R-2,6.6/R-3}{
+  \draw[line width=0.5pt,fill=white] (\x-0.3,-1.45) rectangle (\x+0.3,-0.85);
+  \draw[line width=0.3pt] (\x-0.3,-1.45) -- (\x+0.3,-0.85) (\x-0.3,-0.85) -- (\x+0.3,-1.45);
+  \node[txt,anchor=north] at (\x,-1.55) {\n};
+}
+\node[txt,ali,anchor=south east,align=right] at (25,-0.9) {AL-VE desde el nicho del\\transformador ICE (VE-00), $\approx$120 m};
+
+% ---------------- ruta accesible
+\draw[-{Latex[length=2mm]},blue!70!black,line width=0.6pt,dashed] (2.7,4.7) -- (2.7,6.0) -- (-2.6,6.0);
+\node[txt,blue!70!black,anchor=south west] at (-2.6,6.05) {ruta accesible hacia la acera y el edificio (Ley 7600)};
+
+% ---------------- cotas
+\cotah{0}{3.3}{5.45}{3,30}
+\cotah{3.3}{5.9}{5.45}{2,60}
+\cotah{5.9}{8.5}{5.45}{2,60}
+\cotah{8.5}{11.1}{5.45}{2,60}
+\cotah{11.1}{13.9}{5.45}{2,80}
+\cotah{13.9}{16.7}{5.45}{2,80}
+\cotah{16.7}{17.9}{5.45}{1,20}
+\cotah{17.9}{21.6}{-3.0}{3,70}
+\cotah{0}{17.9}{-3.6}{17,90}
+\cotav{0}{5}{-0.25}{5,00}
+\cotav{5}{11.2}{-0.25}{6,20}
+\cotav{-1.5}{0}{-2.6}{1,50}
+\cotav{-2.6}{0}{22.0}{2,60}
+\cotav{0}{1.1}{22.0}{1,10}
+\cotah{2.1}{3.3}{4.75}{1,20}
+
+% norte
+\begin{scope}[shift={(23.5,9.5)},scale=0.12]
+\filldraw[fill=white,draw=black,line width=0.4pt] (0,0) circle (6);
+\fill[black] (0,5.2) -- (-2.2,-3.8) -- (0,-2.2) -- cycle; \draw[black,line width=0.4pt,fill=white] (0,5.2) -- (2.2,-3.8) -- (0,-2.2) -- cycle;
+\node[font=\fontsize{8}{9}\selectfont\bfseries] at (0,9) {N};
+\end{scope}
+% escala gráfica 0-5 m
+\begin{scope}[shift={(-3,-5)}]
+\foreach \i in {0,...,4}{\filldraw[fill=\ifodd\i white\else black\fi,draw=black,line width=0.3pt] (\i,0) rectangle ++(1,0.15);}
+\foreach \i in {0,...,5}{\node[txt,anchor=north] at (\i,-0.02) {\i};}
+\node[txt,anchor=west] at (5.1,0.07) {m (1:100 en A3)};
+\end{scope}
+\end{scope}
+
+% ---------------- LEYENDA
+\node[anchor=north west,font=\fontsize{9}{11}\selectfont\bfseries] at (318,283) {LEYENDA};
+\begin{scope}[shift={(318,274)},font=\fontsize{5.6}{6.8}\selectfont]
+\def\dy{5.2}
+\draw[equ,fill=ac!70] (0,-0.9) rectangle (3,0.9); \node[anchor=west] at (5,0) {Cargador CA J1772 40 A (Autel AC Elite) -- AC-1, AC-2};
+\draw[equ,fill=gbt!70] (0,-\dy-0.9) rectangle (3,-\dy+0.9); \node[anchor=west] at (5,-\dy) {Cargador CA GB/T 32 A (MDAC 132EN K) -- AC-3, AC-4};
+\draw[equ,fill=dcc!60] (0,-2*\dy-0.9) rectangle (3,-2*\dy+0.9); \node[anchor=west] at (5,-2*\dy) {Cargador rápido CC 60 kW CCS1 + CHAdeMO -- DC-1};
+\draw[equ,fill=gray!30] (0,-3*\dy-0.9) rectangle (3,-3*\dy+0.9); \node[anchor=west] at (5,-3*\dy) {Pedestal doble PED-1/PED-2 (2 cargadores CA)};
+\draw[equ,fill=red!15] (0,-4*\dy-0.9) rectangle (3,-4*\dy+0.9); \node[anchor=west] at (5,-4*\dy) {Tablero TD-VE 480Y/277 V / TD-AC 208Y/120 V};
+\draw[equ,fill=orange!20] (0,-5*\dy-0.9) rectangle (3,-5*\dy+0.9); \node[anchor=west] at (5,-5*\dy) {Transformador seco T-VE 45 kVA 480$\Delta$--208Y/120 V};
+\node[circle,draw=black,fill=red,inner sep=0pt,minimum size=2.2mm] at (1.5,-6*\dy) {}; \node[anchor=west] at (5,-6*\dy) {Paro de emergencia EPO (hongo rojo, abre IP de TD-VE)};
+\node[bol] at (1.5,-7*\dy) {}; \node[anchor=west] at (5,-7*\dy) {Bolardo de acero \O{}150 mm relleno de concreto, h 1,0 m};
+\fill[gray!70] (0.3,-8*\dy-0.2) rectangle (2.7,-8*\dy+0.2); \node[anchor=west] at (5,-8*\dy) {Tope de rueda de concreto};
+\node[circle,draw=black,fill=yellow,inner sep=0pt,minimum size=2.4mm] at (1.5,-9*\dy) {}; \node[anchor=west] at (5,-9*\dy) {Poste de alumbrado LED 150 W, 6 m (L-1, L-2)};
+\draw[line width=0.4pt,fill=white] (1,-10*\dy-0.6) rectangle (2,-10*\dy+0.6); \node[font=\fontsize{4}{4}\selectfont\bfseries] at (1.5,-10*\dy) {S}; \node[anchor=west] at (5,-10*\dy) {Señal vertical: estación VE, conector (INTE N120), Ley 7600};
+\draw[line width=0.5pt] (0.7,-11*\dy-0.8) rectangle (2.3,-11*\dy+0.8); \draw[line width=0.3pt] (0.7,-11*\dy-0.8) -- (2.3,-11*\dy+0.8) (0.7,-11*\dy+0.8) -- (2.3,-11*\dy-0.8); \node[anchor=west] at (5,-11*\dy) {Registro eléctrico 60$\times$60 cm, tapa de tránsito};
+\draw[ali,line width=1.1pt] (0,-12*\dy) -- (3,-12*\dy); \node[anchor=west] at (5,-12*\dy) {Alimentador AL-VE 480 V, PVC 3'' + ducto de reserva 3''};
+\draw[dcc,line width=0.8pt] (0,-13*\dy) -- (3,-13*\dy); \node[anchor=west] at (5,-13*\dy) {Circuito DC-1: 3\#1 + EGC\#6, PVC 1-1/2''};
+\draw[ac,line width=0.8pt] (0,-14*\dy) -- (3,-14*\dy); \node[anchor=west] at (5,-14*\dy) {Circuitos AC-1/AC-2: 4\#6 + EGC\#10, PVC 1''};
+\draw[gbt,line width=0.8pt] (0,-15*\dy) -- (3,-15*\dy); \node[anchor=west] at (5,-15*\dy) {Circuitos AC-3/AC-4: 4\#8 + EGC\#10, PVC 1''};
+\draw[black,line width=0.5pt,densely dashed] (0,-16*\dy) -- (3,-16*\dy); \node[anchor=west] at (5,-16*\dy) {Alumbrado (277 V) y control del EPO, PVC 3/4''};
+\draw[tierra,line width=0.6pt] (0.8,-17*\dy) -- (2.2,-17*\dy); \draw[tierra,line width=0.6pt] (1.5,-17*\dy) -- (1.5,-17*\dy+0.8); \node[anchor=west] at (5,-17*\dy) {Varilla de tierra Cu 16 mm $\times$ 2,4 m};
+\fill[pattern=crosshatch,pattern color=red!50] (0,-18*\dy-0.9) rectangle (3,-18*\dy+0.9); \node[anchor=west] at (5,-18*\dy) {Espacio de trabajo frente a tableros (NEC 110.26)};
+\fill[pattern=north east lines,pattern color=blue!60] (0,-19*\dy-0.9) rectangle (3,-19*\dy+0.9); \node[anchor=west] at (5,-19*\dy) {Franja de transferencia del espacio accesible};
+\end{scope}
+
+% ---------------- NOTAS
+\node[anchor=north west,font=\fontsize{9}{11}\selectfont\bfseries] at (15,92) {NOTAS};
+\node[anchor=north west,font=\fontsize{5.8}{7.1}\selectfont,align=left,text width=228mm] at (15,86) {%
+1. Cotas en metros. Espacios a 90° de 5,00 m de fondo; 2,60 m (CA) y 2,80 m (CC) de ancho para abrir puertas con el cable conectado. Espacio accesible P1 de 3,30 m con franja de transferencia de 1,20 m (Ley 7600, art. 43: 5 \% de los espacios, mínimo 2 en el parqueo completo; dimensiones a confirmar con el Reglamento, Decreto 26831-MP) (S).\\
+2. Los espacios P1--P6 son exclusivos para vehículos en carga: demarcación verde, pictograma VE y rótulo con el identificador de compatibilidad de cada conector según INTE N120 (equivalente a EN 17186) junto a cada manguera.\\
+3. Cargadores en isla de concreto elevada 150 mm, a $\ge$ 0,6 m del borde y protegidos con bolardos y topes de rueda contra impactos. Mangueras con soporte de cable: longitud $\le$ 7,5 m (NEC 625.17(A)(3)); conectores a 0,9--1,2 m del piso (alcance accesible).\\
+4. Celda eléctrica cercada (malla, h 2,1 m) con equipos NEMA 3R. Frente libre de 1,10 m $\ge$ 1,07 m (NEC 110.26(A)(1), condición 2, 151--600 V) y altura libre $\ge$ 2,0 m; manijas a $\le$ 2,0 m (240.24(A)).\\
+5. Paro de emergencia EPO-1 (celda) y EPO-2 (entre P6 y la celda): abren el interruptor principal de TD-VE por disparo en derivación y desenergizan todos los cargadores. DC-1 tiene además su propio botón de emergencia (hoja técnica).\\
+6. Canalizaciones subterráneas de PVC cédula 40 a 600 mm de profundidad bajo la isla y la zona de rodamiento (NEC 300.5, Tabla 300.5), con cinta de advertencia a 300 mm. Registros R-1 a R-3 con tapa de tránsito.\\
+7. Iluminación con dos postes LED: criterio de diseño $\ge$ 50 lx medios en el área de conexión durante la noche (INTE N121, iluminación) (S).\\
+8. El drenaje superficial existente del parqueo corre hacia la franja verde (sur): las bases de los cargadores quedan 150 mm sobre la rasante y los equipos son NEMA 3R/IP54 o superior.};
+
+\cajetin{VE-01}{Planta de la estación: puntos de carga, estacionamientos,}{celda eléctrica, canalizaciones, accesos y medidas de seguridad}{1:100}{2 de 4}
+\end{tikzpicture}
+\end{document}

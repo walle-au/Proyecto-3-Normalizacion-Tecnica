@@ -1,0 +1,132 @@
+\documentclass[border=0pt]{standalone}
+\newcommand{\revlamina}{1}
+\input{lamina_comun.tex}
+\tikzset{
+  txt/.style={font=\fontsize{5.4}{6.5}\selectfont,align=center},
+  tl/.style={font=\fontsize{5.4}{6.5}\selectfont,align=left},
+  cota/.style={<->,>={Latex[length=1.3mm]},line width=0.25pt},
+  conc/.style={fill=gray!30,draw=black,line width=0.4pt},
+  tit/.style={font=\fontsize{7.5}{9}\selectfont\bfseries,anchor=north west},
+}
+\newcommand{\cv}[4]{\draw[cota] (#3,#1) -- node[fill=white,inner sep=0.4pt,font=\fontsize{4.8}{5.5}\selectfont,rotate=90]{#4} (#3,#2);}
+\newcommand{\ch}[4]{\draw[cota] (#1,#3) -- node[fill=white,inner sep=0.4pt,font=\fontsize{4.8}{5.5}\selectfont]{#4} (#2,#3);}
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+\marco
+\node[anchor=north west,font=\fontsize{10}{12}\selectfont\bfseries] at (15,283) {DETALLES DE MONTAJE, CANALIZACIÓN, PUESTA A TIERRA, ROTULACIÓN Y EMERGENCIA};
+
+% =============== D1: pedestal CA (elevación, 1:20 -> 1 m = 50 mm)
+\node[tit] at (15,274) {D1 -- PEDESTAL DOBLE DE CARGA CA (PED-1/PED-2), ELEVACIÓN 1:20};
+\begin{scope}[shift={(25,175)},x=50mm,y=50mm]
+\fill[gray!15] (-0.2,-0.3) rectangle (1.6,0);          % terreno
+\draw[line width=0.5pt] (-0.2,0) -- (1.6,0);
+\draw[conc] (0.45,0) rectangle (1.05,0.15);              % isla 150 mm
+\draw[conc,pattern=crosshatch dots,pattern color=gray] (0.55,-0.25) rectangle (0.95,0);   % dado
+\draw[line width=0.5pt,fill=gray!50] (0.71,0.15) rectangle (0.79,1.55);   % poste
+\draw[line width=0.5pt,fill=ac!60] (0.79,0.95) rectangle (0.86,1.25);    % cargador
+\draw[line width=0.5pt,fill=ac!60] (0.64,0.95) rectangle (0.71,1.25);
+\draw[line width=0.4pt,fill=black] (0.86,0.98) rectangle (0.9,1.06);      % funda conector
+\draw[ac,line width=0.8pt] (0.86,1.0) .. controls (1.15,0.9) and (1.2,0.5) .. (1.05,0.35) .. controls (0.95,0.25) and (0.9,0.6) .. (0.9,1.02);
+\draw[line width=0.5pt] (0.75,1.55) -- (0.75,1.62) -- (1.05,1.62);       % brazo gestor de cable
+\draw[gray,line width=0.3pt] (1.05,1.62) -- (1.05,1.2);
+\node[tl,anchor=west] at (1.08,1.4) {gestor de cable\\(625.17)};
+\draw[line width=0.4pt,fill=yellow!80!black] (0.05,0.15) rectangle (0.13,1.0);   % bolardo
+\draw[conc] (0.0,-0.3) rectangle (0.18,0.0);
+\draw[ac!70!black,line width=0.8pt] (0.75,-0.3) -- (0.75,0.15);
+\node[tl,anchor=west] at (0.78,-0.18) {PVC 1'' (2 circuitos)};
+\fill[gray!60] (1.25,0) rectangle (1.55,0.12);  % tope rueda
+\cv{0}{1.0}{-0.1}{1,00}
+\cv{0.15}{1.02}{0.4}{0,87}
+\cv{0}{1.25}{1.5}{1,25 máx}
+\ch{0.13}{0.71}{1.7}{$\ge$ 0,60}
+\node[txt,anchor=north] at (0.09,-0.32) {bolardo \O{}150\\relleno};
+\node[txt,anchor=north] at (0.75,-0.32) {dado 400$\times$400\\$\times$250, anclas\\4 $\times$ 13 mm};
+\node[txt,anchor=north] at (1.4,-0.02) {tope};
+\node[tl,anchor=west] at (0.92,1.1) {AC-1/AC-2\\NEMA 4};
+\end{scope}
+\node[tl,anchor=north west,text width=88mm] at (15,151) {Conector alojado entre 0,9 y 1,2 m sobre el piso terminado (alcance de silla de ruedas, Ley 7600). Cable de 7,5 m recogido en el gestor de cable sin tocar el piso (NEC 625.17). Anclaje al dado con pernos de acero inoxidable (corrosión, NEC 300.6). Montaje según el manual del fabricante (110.3(B)).};
+
+% =============== D2: zanja (1:10 -> 1 m = 100 mm)
+\node[tit] at (118,274) {D2 -- SECCIÓN DE ZANJA DEL ALIMENTADOR AL-VE, 1:15};
+\begin{scope}[shift={(128,262)},x=66.67mm,y=66.67mm]
+\fill[brown!20] (-0.1,-0.7) rectangle (0.6,0);
+\fill[white] (0,-0.7) rectangle (0.45,0);
+\fill[yellow!12] (0,-0.7) rectangle (0.45,-0.42);          % arena
+\fill[brown!10] (0,-0.42) rectangle (0.45,-0.05);          % relleno compactado
+\fill[gray!70] (-0.1,-0.05) rectangle (0.6,0);             % asfalto
+\draw[line width=0.5pt] (0,0) -- (0,-0.7) -- (0.45,-0.7) -- (0.45,0);
+\foreach \x in {0.13,0.32}{\draw[line width=0.6pt,fill=white] (\x,-0.6) circle (0.0445);}
+\fill[ali] (0.13,-0.6) circle (0.012); \fill[ali] (0.12,-0.585) circle (0.012); \fill[ali] (0.14,-0.585) circle (0.012); \fill[tierra] (0.13,-0.62) circle (0.007);
+\draw[red,line width=0.8pt,dashed] (0.02,-0.3) -- (0.43,-0.3);
+\cv{-0.6}{0}{-0.05}{0,60}
+\cv{-0.3}{0}{0.52}{0,30}
+\ch{0}{0.45}{-0.76}{0,45}
+\node[tl,anchor=west] at (0.6,-0.02) {asfalto repuesto 50 mm};
+\node[tl,anchor=west] at (0.6,-0.2) {relleno compactado al 95 \%};
+\node[tl,anchor=west] at (0.6,-0.3) {\textcolor{red}{cinta de advertencia ``PELIGRO -- 480 V''}};
+\node[tl,anchor=west] at (0.6,-0.52) {cama y recubrimiento de arena 100 mm};
+\node[tl,anchor=west] at (0.6,-0.62) {AL-VE: PVC 3'' cédula 40 (3\#3/0 + N\#4 + EGC\#6)\\y ducto PVC 3'' de reserva};
+\end{scope}
+\node[tl,anchor=north west,text width=105mm] at (118,206) {Profundidad mínima 600 mm bajo calles y parqueos para tubería no metálica (NEC 300.5, Tabla 300.5). Registros de 60$\times$60 cm cada $\le$ 30 m y en cada cambio de dirección; sellado de ductos contra el ingreso de agua (300.5(G)).};
+
+% =============== D3: base de DC-1 (planta 1:25 -> 1 m = 40 mm)
+\node[tit] at (237,274) {D3 -- BASE DEL CARGADOR RÁPIDO DC-1, PLANTA 1:25};
+\begin{scope}[shift={(258,205)},x=40mm,y=40mm]
+\draw[conc] (0,0) rectangle (1.4,1.3);
+\draw[line width=0.6pt,fill=dcc!60] (0.29,0.45) rectangle (1.11,1.05) node[midway,txt]{DC-1\\820 $\times$ 600};
+\foreach \x/\y in {0.36/0.52,1.04/0.52,0.36/0.98,1.04/0.98}{\draw (\x,\y) circle (0.02);}
+\draw[dcc!80!black,line width=0.6pt] (0.7,0.75) circle (0.05);
+\node[tl,anchor=west] at (1.45,0.75) {entrada inferior\\PVC 1-1/2''};
+\foreach \x in {0.1,1.3}{\node[circle,draw=black,fill=yellow!80!black,inner sep=0pt,minimum size=2.5mm] at (\x,-0.25) {};}
+\draw[gray,dashed] (0,-0.25) -- (1.4,-0.25);
+\ch{0}{1.4}{-0.45}{1,40}
+\cv{0}{1.3}{-0.15}{1,30}
+\cv{-0.25}{0.45}{1.55}{$\ge$ 0,70}
+\node[tl,anchor=north west] at (0,-0.55) {frente (conectores) hacia P5/P6 $\rightarrow$};
+\end{scope}
+\node[tl,anchor=north west,text width=150mm] at (237,163) {Losa de concreto de 200 mm, 150 mm sobre la isla, con 4 anclas de acero inoxidable según la plantilla del fabricante. Gabinete NEMA 3R / IK10, 1950 mm de alto; dejar $\ge$ 0,7 m libres al frente y los espacios de ventilación del manual. Cables CCS1 y CHAdeMO de 4,6 m con soporte; botón de emergencia integrado.};
+
+% =============== D4: puesta a tierra
+\node[tit] at (15,133) {D4 -- PUESTA A TIERRA DE LA CELDA ELÉCTRICA (sin escala)};
+\begin{scope}[shift={(20,85)}]
+\fill[brown!12] (0,-30) rectangle (95,0);
+\draw[line width=0.4pt] (0,0) -- (95,0);
+\draw[conc] (12,0) rectangle (72,4);
+\node[txt] at (42,2) {losa de la celda};
+\foreach \x in {15,70}{\draw[tierra,line width=1.4pt] (\x,-2) -- (\x,-28); \draw[line width=0.4pt,fill=white] (\x-2.5,-4) rectangle (\x+2.5,0);}
+\draw[tierra,line width=0.8pt] (15,-2) -- (70,-2);
+\node[txt,anchor=north] at (42.5,-2.6) {\#4 Cu desnudo, soldadura exotérmica};
+\draw[tierra,line width=0.8pt] (30,-2) -- (30,12) node[txt,anchor=south]{GEC \#6\\TD-VE};
+\draw[tierra,line width=0.8pt] (52,-2) -- (52,12) node[txt,anchor=south]{GEC \#6\\T-VE (SDS)};
+\node[txt,anchor=west] at (73,-15) {2 varillas Cu\\16 mm $\times$ 2,4 m\\separación $\ge$ 1,8 m};
+\ch{15}{70}{-31.5}{$\ge$ 1,8 m (250.53(A)(3))}
+\node[txt,anchor=north] at (15,-28.5) {};
+\end{scope}
+\node[tl,anchor=north west,text width=100mm] at (15,49) {Electrodo de la estructura alimentada por AL-VE (250.32(A)); dos varillas (250.53(A)(2)). Registros de inspección con tapa. Medir la resistencia en la puesta en marcha; objetivo de diseño $\le$ 10 $\Omega$ (S). Pedestales, bolardos metálicos, luminarias y la malla del cerramiento se unen al EGC.};
+
+% =============== D5: rotulación
+\node[tit] at (122,133) {D5 -- ROTULACIÓN};
+\node[anchor=north west,font=\fontsize{5.2}{6.3}\selectfont] at (122,126) {%
+\begin{tabular}{@{}p{19mm}p{84mm}@{}}
+\textbf{Ubicación} & \textbf{Texto / norma}\\\hline
+TD-VE & ``TABLERO ESTACIÓN VE -- 480Y/277 V -- ALIMENTADO DESDE IP-VE, NICHO TRANSF. ICE 119688''; corriente de falla disponible 5,8 kA y fecha (110.24); directorio de circuitos (408.4)\\
+IP-VE (nicho) & ``ESTACIÓN DE CARGA VE -- DESCONECTADOR PRINCIPAL'' (230.70(B)); riesgo de arco eléctrico (110.16)\\
+Interruptor DC-1 & ``MEDIO DE DESCONEXIÓN DC-1 -- BLOQUEABLE'' (625.43)\\
+T-VE & ``SISTEMA DERIVADO 208Y/120 V'' (250.30); ``PELIGRO -- 480 V''\\
+EPO-1/EPO-2 & ``PARO DE EMERGENCIA -- DESENERGIZA TODOS LOS CARGADORES''\\
+Cada EVSE & Identificador de compatibilidad INTE N120 (hexágono CA / cuadrado CC); potencia; teléfono de soporte; instrucciones de uso\\
+P1 & Símbolo internacional de accesibilidad, señal vertical y pintura (Ley 7600)\\
+P1--P6 & ``SOLO VEHÍCULOS ELÉCTRICOS EN CARGA'' + tiempo máximo de permanencia\\
+\end{tabular}};
+
+% =============== D6: emergencia y mantenimiento
+\node[tit] at (237,133) {D6 -- EMERGENCIA Y MANTENIMIENTO};
+\node[anchor=north west,font=\fontsize{5.4}{6.6}\selectfont,align=left,text width=165mm] at (237,126) {%
+\textbf{Ante incendio, choque o cable dañado:} 1) pulsar EPO-1 o EPO-2 (abre TD-VE); 2) llamar al 9-1-1 e informar ``estación de carga de vehículos eléctricos, 480 V''; 3) si el fuego es en la batería de un vehículo, no usar agua sobre el equipo energizado y esperar a Bomberos; 4) abrir IP-VE en el nicho del transformador si TD-VE no es accesible.\\[1mm]
+\textbf{Extintor:} uno de CO$_2$ o polvo ABC de 10 lb junto a la celda eléctrica (RNPCI) (S).\\[1mm]
+\textbf{Mantenimiento preventivo (S):} mensual: inspección visual de cables, conectores y fundas; prueba del botón de cada CCID/RCD. Semestral: limpieza de filtros de DC-1, apriete de terminales con termografía, prueba de EPO. Anual: medición de la resistencia de tierra, prueba de aislamiento y verificación de la firma del EMS. Contrato con el representante de Autel; repuestos críticos: un conector J1772 y un cable CCS1.\\[1mm]
+\textbf{Ampliación:} T-VE admite 2 cargadores CA más (espacios de reserva en TD-AC); TD-VE tiene un espacio 3P de reserva y existe un ducto de 3'' de reserva para un segundo cargador CC, sujeto al estudio de capacidad del ICE.};
+
+\cajetin{VE-03}{Detalles de montaje, zanja, base del cargador rápido,}{puesta a tierra, rotulación, emergencia y mantenimiento}{Indicadas}{4 de 4}
+\end{tikzpicture}
+\end{document}

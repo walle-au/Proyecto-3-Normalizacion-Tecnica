@@ -1,0 +1,73 @@
+====================================================================================================
+ENERGÍA, POTENCIA EFECTIVA Y TIEMPO DE CARGA (CA a 208 V; CC con curva de aceptación)
+====================================================================================================
+Supuestos: eta CA red->batería = 0.9; eta CC cargador = 0.95; eta CC vehículo = 0.97
+
+--- Sesión de 20 % a 80 % de SOC ---
+Vehículo                                Punto                              E bat   E red  P media P máx red        Tiempo
+BYD Dolphin (CR, 2024)                  AC-3/AC-4 (GB/T, 32 A)              26.9    29.9      5.9       6.6    4 h 32 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      AC-1/AC-2 (J1772, 40 A)             23.4    26.0      5.9       6.6    3 h 56 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      DC-1 un vehículo (60 kW)            23.4    25.4     36.0      47.6    0 h 39 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      DC-1 dos vehículos (30 kW c/u)      23.4    25.4     28.3      31.6    0 h 50 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      AC-1/AC-2 (J1772, 40 A)             46.4    51.6      7.5       8.3    6 h 12 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      DC-1 un vehículo (60 kW)            46.4    50.4     58.2      63.2    0 h 48 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      DC-1 dos vehículos (30 kW c/u)      46.4    50.4     29.1      31.6    1 h 36 min
+Tesla Model Y LR (EE. UU., 2024)        AC-1/AC-2 (J1772, 40 A)             45.0    50.0      7.5       8.3    6 h 01 min
+Tesla Model Y LR (EE. UU., 2024)        DC-1 un vehículo (60 kW)            45.0    48.8     58.2      63.2    0 h 46 min
+Tesla Model Y LR (EE. UU., 2024)        DC-1 dos vehículos (30 kW c/u)      45.0    48.8     29.1      31.6    1 h 33 min
+Ford F-150 Lightning ER (EE. UU., 2024) AC-1/AC-2 (J1772, 40 A)             78.6    87.3      7.5       8.3   10 h 30 min
+Ford F-150 Lightning ER (EE. UU., 2024) DC-1 un vehículo (60 kW)            78.6    85.3     58.2      63.2    1 h 21 min
+Ford F-150 Lightning ER (EE. UU., 2024) DC-1 dos vehículos (30 kW c/u)      78.6    85.3     29.1      31.6    2 h 42 min
+
+--- Sesión de 10 % a 80 % de SOC ---
+Vehículo                                Punto                              E bat   E red  P media P máx red        Tiempo
+BYD Dolphin (CR, 2024)                  AC-3/AC-4 (GB/T, 32 A)              31.4    34.9      5.9       6.6    5 h 17 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      AC-1/AC-2 (J1772, 40 A)             27.3    30.3      5.9       6.6    4 h 36 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      DC-1 un vehículo (60 kW)            27.3    29.6     37.0      48.0    0 h 44 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      DC-1 dos vehículos (30 kW c/u)      27.3    29.6     28.4      31.6    0 h 58 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      AC-1/AC-2 (J1772, 40 A)             54.2    60.2      7.5       8.3    7 h 14 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      DC-1 un vehículo (60 kW)            54.2    58.8     58.2      63.2    0 h 56 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      DC-1 dos vehículos (30 kW c/u)      54.2    58.8     29.1      31.6    1 h 52 min
+Tesla Model Y LR (EE. UU., 2024)        AC-1/AC-2 (J1772, 40 A)             52.5    58.3      7.5       8.3    7 h 01 min
+Tesla Model Y LR (EE. UU., 2024)        DC-1 un vehículo (60 kW)            52.5    57.0     58.2      63.2    0 h 54 min
+Tesla Model Y LR (EE. UU., 2024)        DC-1 dos vehículos (30 kW c/u)      52.5    57.0     29.1      31.6    1 h 48 min
+Ford F-150 Lightning ER (EE. UU., 2024) AC-1/AC-2 (J1772, 40 A)             91.7   101.9      7.5       8.3   12 h 15 min
+Ford F-150 Lightning ER (EE. UU., 2024) DC-1 un vehículo (60 kW)            91.7    99.5     58.2      63.2    1 h 35 min
+Ford F-150 Lightning ER (EE. UU., 2024) DC-1 dos vehículos (30 kW c/u)      91.7    99.5     29.1      31.6    3 h 09 min
+
+--- Sesión de 20 % a 100 % de SOC ---
+Vehículo                                Punto                              E bat   E red  P media P máx red        Tiempo
+BYD Dolphin (CR, 2024)                  AC-3/AC-4 (GB/T, 32 A)              35.9    39.9      5.6       6.6    6 h 22 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      AC-1/AC-2 (J1772, 40 A)             31.2    34.7      5.6       6.6    5 h 32 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      DC-1 un vehículo (60 kW)            31.2    33.9     21.6      47.6    1 h 27 min
+Nissan Leaf 40 kWh (EE. UU., 2023)      DC-1 dos vehículos (30 kW c/u)      31.2    33.9     19.2      31.6    1 h 37 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      AC-1/AC-2 (J1772, 40 A)             61.9    68.8      7.1       8.3    8 h 42 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      DC-1 un vehículo (60 kW)            61.9    67.2     54.7      63.2    1 h 08 min
+Hyundai Ioniq 5 LR (EE. UU., 2024)      DC-1 dos vehículos (30 kW c/u)      61.9    67.2     28.9      31.6    2 h 08 min
+Tesla Model Y LR (EE. UU., 2024)        AC-1/AC-2 (J1772, 40 A)             60.0    66.7      7.1       8.3    8 h 26 min
+Tesla Model Y LR (EE. UU., 2024)        DC-1 un vehículo (60 kW)            60.0    65.1     45.3      63.2    1 h 20 min
+Tesla Model Y LR (EE. UU., 2024)        DC-1 dos vehículos (30 kW c/u)      60.0    65.1     27.3      31.6    2 h 12 min
+Ford F-150 Lightning ER (EE. UU., 2024) AC-1/AC-2 (J1772, 40 A)            104.8   116.4      7.1       8.3   14 h 44 min
+Ford F-150 Lightning ER (EE. UU., 2024) DC-1 un vehículo (60 kW)           104.8   113.7     45.6      63.2    2 h 18 min
+Ford F-150 Lightning ER (EE. UU., 2024) DC-1 dos vehículos (30 kW c/u)     104.8   113.7     27.3      31.6    3 h 50 min
+
+Incompatibilidades sin adaptador aprobado por el fabricante:
+  BYD Dolphin (CR, 2024): AC-1/AC-2 (J1772, 40 A), DC-1 un vehículo (60 kW), DC-1 dos vehículos (30 kW c/u)
+  Nissan Leaf 40 kWh (EE. UU., 2023): AC-3/AC-4 (GB/T, 32 A)
+  Hyundai Ioniq 5 LR (EE. UU., 2024): AC-3/AC-4 (GB/T, 32 A)
+  Tesla Model Y LR (EE. UU., 2024): AC-3/AC-4 (GB/T, 32 A)
+  Ford F-150 Lightning ER (EE. UU., 2024): AC-3/AC-4 (GB/T, 32 A)
+
+====================================================================================================
+ESCENARIO DE USO (S) Y ENERGÍA DE LA ESTACIÓN
+====================================================================================================
+  2 x Hyundai Ioniq 5 LR (EE. UU., 2024)     en AC-1/AC-2 (J1772, 40 A)      40->90 %:   86.0 kWh red, 10 h 20 min
+  2 x Nissan Leaf 40 kWh (EE. UU., 2023)     en AC-1/AC-2 (J1772, 40 A)      30->100 %:   60.7 kWh red, 9 h 45 min
+  4 x BYD Dolphin (CR, 2024)                 en AC-3/AC-4 (GB/T, 32 A)       30->100 %:  139.7 kWh red, 22 h 27 min
+  2 x Hyundai Ioniq 5 LR (EE. UU., 2024)     en DC-1 un vehículo (60 kW)     20->80 %:  100.8 kWh red, 1 h 36 min
+  1 x Ford F-150 Lightning ER (EE. UU., 2024) en DC-1 un vehículo (60 kW)     20->80 %:   85.3 kWh red, 1 h 21 min
+  2 x Nissan Leaf 40 kWh (EE. UU., 2023)     en DC-1 un vehículo (60 kW)     20->80 %:   50.8 kWh red, 1 h 18 min
+  1 x Tesla Model Y LR (EE. UU., 2024)       en DC-1 un vehículo (60 kW)     20->80 %:   48.8 kWh red, 0 h 46 min
+  Energía por día lectivo: 572 kWh de la red (521 kWh entregados a baterías)
+  Ocupación de DC-1: 5.0 h por día lectivo
+  Energía anual: 572 x (250 + 115 x 0.3) = 162.8 MWh/año (promedio 13563 kWh/mes)

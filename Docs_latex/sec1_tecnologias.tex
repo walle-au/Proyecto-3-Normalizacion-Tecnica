@@ -1,0 +1,121 @@
+% =====================================================================
+\section{Tecnologías y modalidades de carga}
+\label{sec:tecnologias}
+
+\subsection{EVSE, cargador a bordo y cargador externo de CC}
+\begin{itemize}
+\item \textbf{Equipo de suministro para VE (EVSE).} Es el equipo fijo o portátil que conecta el vehículo a la red: conductores, conector, relés, protección de personas y comunicación. \emph{En CA el EVSE no convierte energía}: solo informa al vehículo, por la señal piloto (\emph{control pilot}, SAE J1772 / IEC 61851-1), cuánta corriente puede tomar, y cierra el circuito cuando hay condiciones seguras \cite{iec61851,sae1772}. En el NEC el término incluye conectores, cables y accesorios (art.~625) \cite{nfpa70}.
+\item \textbf{Cargador a bordo (OBC).} Es el rectificador que va dentro del vehículo y convierte la CA del EVSE en la CC de la batería. Su potencia (típicamente de 6,6 a \SI{19.2}{\kilo\watt}) limita la carga en CA, aunque el EVSE pueda entregar más. Por ejemplo, el BYD Dolphin vendido en Costa Rica tiene un OBC de \SI{6.6}{\kilo\watt} \cite{bydDolphin}.
+\item \textbf{Cargador externo de CC.} El rectificador está fuera del vehículo, en el equipo de la estación, y entrega CC directamente a la batería sin pasar por el OBC. La potencia la negocia el sistema de gestión de la batería (BMS) del vehículo por comunicación digital: PLC según DIN 70121/ISO 15118 en CCS, CAN en CHAdeMO y GB/T 27930 en GB/T \cite{autelDC,zerova}.
+\end{itemize}
+
+\subsection{CA y CC, niveles y modos: sistema de clasificación usado}
+En CA la conversión la hace el vehículo; en CC, la estación. Hay dos sistemas de clasificación que se usan en paralelo:
+\begin{itemize}
+\item \textbf{Niveles (SAE J1772, mercado norteamericano y NEC).} Nivel~1: 120~V CA, hasta \SI{16}{\ampere} (unos \SI{1.9}{\kilo\watt}). Nivel~2: 208/240~V CA, hasta \SI{80}{\ampere} (\SI{19.2}{\kilo\watt}). Carga rápida en CC: desde decenas hasta cientos de kW \cite{sae1772}.
+\item \textbf{Modos (IEC 61851-1, adoptada como INTE/IEC 61851-1).} Modo~1: conexión directa a un tomacorriente sin control. Modo~2: cable portátil con dispositivo de control y protección en el cable (IC-CPD). Modo~3: EVSE dedicado de CA con señal piloto. Modo~4: cargador externo de CC \cite{iec61851,intecoBlog}.
+\end{itemize}
+Este documento usa \textbf{los modos IEC} como clasificación principal, porque el reglamento de la Ley 9518 define los centros de recarga por referencia a INTE/IEC 61851-1, -22 y -23 \cite{dec41428}. Para los equipos norteamericanos se indica además el nivel SAE, que es el lenguaje del NEC y de las fichas UL. Con esa convención, AC-1 a AC-4 son \textbf{Modo~3 / Nivel~2}, DC-1 es \textbf{Modo~4} y un cable portátil de 120~V es \textbf{Modo~2 / Nivel~1}.
+
+\subsection{Carga residencial con tomacorriente de 120 V y equipo portátil}
+\begin{itemize}
+\item \textbf{Circuito:} tomacorriente NEMA 5-15 o 5-20 en un circuito dedicado de 15 o \SI{20}{\ampere}. Como la carga es continua, la corriente queda limitada al 80\,\% del circuito: 12 o \SI{16}{\ampere} (NEC 625.41 y 210.19). El tomacorriente requiere protección GFCI (625.54) \cite{nfpa70}.
+\item \textbf{Potencia:} $120 \times 12 = \SI{1.44}{\kilo\watt}$ en la red, y unos \SI{1.2}{\kilo\watt} en la batería con una eficiencia del 85\,\% \supuesto{}.
+\item \textbf{Tiempo de carga:} un Nissan Leaf de \SI{39}{\kilo\watt\hour} útiles necesita unas 19~h para pasar del 20 al 80\,\% ($23{,}4/1{,}22$), y un Hyundai Ioniq~5 (\SI{77.4}{\kilo\watt\hour}), unas 38~h. Solo sirve para recorridos diarios cortos (unos 40--60~km por noche).
+\item \textbf{Limitaciones:} calentamiento de tomacorrientes viejos, prohibición de extensiones y pérdidas proporcionalmente mayores. En Costa Rica las viviendas reciben servicio monofásico trifilar de 120/240~V, así que suele ser posible migrar a 240~V.
+\end{itemize}
+
+\subsection{Carga residencial con equipo de pared o pedestal (wallbox)}
+Es un EVSE Modo~3 conectado a 240~V entre fases (vivienda) o a 208~V entre fases (edificios con servicio 208Y/120~V), en un circuito dedicado al 125\,\% de la corriente del equipo. Con \SI{40}{\ampere} (circuito de \SI{50}{\ampere}) entrega \SI{9.6}{\kilo\watt} a 240~V o \SI{8.3}{\kilo\watt} a 208~V, aunque la potencia real la fija el OBC. A 208~V la potencia baja un 13\,\% con la misma corriente, un efecto que se cuantifica en la sección~\ref{sec:calc_carga}. Antes de instalarlo hay que revisar la capacidad del servicio con el cálculo de cargas (NEC 220) o usar un sistema de gestión de carga (625.42).
+
+\subsection{Condominios, comercios, empresas y estacionamientos}
+\begin{itemize}
+\item \textbf{Acceso compartido:} los usuarios se identifican con tarjeta RFID o con una aplicación, los equipos se gestionan en red con OCPP 1.6J o 2.0.1, y se fijan reglas de permanencia para liberar los espacios.
+\item \textbf{Medición:} hay dos esquemas. En uno, cada usuario tiene su medidor o su circuito asociado a su propio servicio. En el otro, la medición es común y se reparte por sesión con el medidor interno del EVSE (clase~A en DC-1 \cite{autelDC}). La reventa de energía a terceros es un servicio de interés general sujeto a la Ley 10937 y a ARESEP (sección~\ref{sec:ley9518}).
+\item \textbf{Gestión de varios puntos:} un EMS reparte la capacidad disponible entre los puntos activos. El NEC 2020 permite dimensionar el alimentador con el límite que fija el EMS (625.42), lo que evita ampliar el servicio. En condominios, la instalación en áreas comunes necesita además la aprobación de los condóminos según su reglamento interno.
+\end{itemize}
+
+\subsection{Carga pública rápida y de alta potencia en CC}
+\begin{itemize}
+\item \textbf{Alimentación:} servicio trifásico, típicamente 480Y/277~V, o 208~V en equipos pequeños. Un equipo de \SI{60}{\kilo\watt} toma unos \SI{91}{\ampere} a 480~V \cite{autelDC}, y uno de \SI{120}{\kilo\watt}, \SI{153}{\ampere} \cite{abbTerra124}. Con frecuencia se necesita un transformador propio y el estudio de capacidad de la distribuidora. El cargo por demanda domina el costo de operación (sección~\ref{sec:economia}).
+\item \textbf{Conectores:} CCS1 (Combo~1), CCS2 (Combo~2), CHAdeMO, GB/T y NACS (SAE J3400). La red del ICE ofrece CCS1, CHAdeMO y GB/T \cite{delfinoAresep}.
+\item \textbf{Condiciones de operación:} reducción de potencia por temperatura ambiente y de batería, por altitud (sobre los 2000~m) y por estado de carga. Por encima del 50--80\,\% de SOC, la potencia cae.
+\item \textbf{Límites del vehículo:} potencia máxima de aceptación, tensión de la batería (400 u 800~V) frente a la corriente máxima del conector (CCS1: \SI{200}{\ampere} en DC-1; CHAdeMO: \SI{125}{\ampere}), y protocolo. Un vehículo de 400~V en un cargador limitado a \SI{200}{\ampere} no pasa de unos \SI{80}{\kilo\watt}.
+\end{itemize}
+
+\subsection{Pickups con tomacorrientes de salida de 120/240 V}
+Hay que distinguir dos puertos distintos:
+\begin{itemize}
+\item \textbf{Puerto de carga (entrada):} en la Ford F-150 Lightning es un CCS1, que recibe CA por J1772 o CC por CCS.
+\item \textbf{Salidas para equipos externos:} el sistema \emph{Pro Power Onboard}. La versión de \SI{2.4}{\kilo\watt} solo tiene tomacorrientes de 120~V. La de \SI{9.6}{\kilo\watt} agrega un tomacorriente de 240~V y \SI{30}{\ampere} (NEMA L14-30) en la caja \cite{fordFAQ}.
+\end{itemize}
+Las salidas se alimentan con el inversor de tracción. No son un puerto de carga, y \emph{su existencia no prueba que puedan cargar otro VE}.
+
+\textbf{Verificación de la combinación F-150 Lightning $\rightarrow$ Nissan Leaf.} Ford documenta que la versión de \SI{9.6}{\kilo\watt} puede dar carga de Nivel~2 a otro VE con el \emph{Ford Mobile Power Cord} de 30~A, y que todas las versiones pueden dar Nivel~1 con los tomacorrientes de 120~V \cite{fordFAQ}. La cadena es: tomacorriente L14-30 (\SI{30}{\ampere}) $\rightarrow$ adaptador de Ford $\rightarrow$ cable con control J1772 configurado a \SI{30}{\ampere} ($\le$ \SI{7.2}{\kilo\watt}) $\rightarrow$ entrada J1772 del Leaf. Cada eslabón tiene su límite: el tomacorriente da \SI{30}{\ampere}, el cable \SI{7.2}{\kilo\watt} y el OBC del Leaf \SI{6.6}{\kilo\watt}. El límite efectivo es el del Leaf, unos \SI{27.5}{\ampere} a 240~V, menor que \SI{30}{\ampere}: la combinación es válida. En una hora, el Leaf recibe unos $6{,}6 \times 0{,}9 \approx \SI{5.9}{\kilo\watt\hour}$ (unos 35--40~km), y la F-150 gasta unos $6{,}6/0{,}9 \approx \SI{7.3}{\kilo\watt\hour}$ \supuesto{}. Es una ayuda de emergencia, no un sustituto de una estación. La combinación \emph{no} es válida con la versión de \SI{2.4}{\kilo\watt} (solo 120~V, Nivel~1) ni con adaptadores de terceros.
+
+\subsection{Carga de vehículo a vehículo (V2V)}
+\begin{itemize}
+\item \textbf{Ford (CA con EVSE portátil):} la solución del apartado anterior. Usa una salida de CA del vehículo donante y un EVSE portátil autorizado por Ford \cite{fordFAQ}.
+\item \textbf{Lucid RangeXchange (adaptador propietario):} un adaptador J1772 (Lucid Air) o NACS (Lucid Gravity) que se conecta al puerto de carga del Lucid y entrega hasta \SI{9.6}{\kilo\watt} a otro VE. Lucid aclara que \emph{solo funciona conectado a un Lucid}: no sirve para que otro VE transfiera energía \cite{lucidRX}.
+\item \textbf{Vehículos con V2L (Hyundai, Kia y otros):} tienen un adaptador de salida en el puerto de carga, de baja potencia, cuyo valor depende del mercado. En la documentación consultada no se encontró una autorización expresa del fabricante para cargar otro VE con un EVSE portátil, por lo que \textbf{no se considera una combinación válida}.
+\end{itemize}
+La conclusión es que el V2V existe como función documentada en pocos modelos, con potencias de 7 a \SI{10}{\kilo\watt}, y solo con los accesorios del fabricante. Se descarta para la estación porque no aporta capacidad y requiere vehículos específicos.
+
+\subsection{Transferencia bidireccional: V2L, V2H/V2B y V2G}
+\begin{itemize}
+\item \textbf{V2L (vehículo a carga):} el vehículo alimenta equipos aislados por tomacorrientes o por un adaptador. No interactúa con la red y no requiere autorización de la distribuidora.
+\item \textbf{V2H/V2B (vehículo a vivienda o edificio):} el vehículo alimenta la instalación durante un corte. Requiere un EVSE bidireccional y un \textbf{medio de transferencia que aísle la instalación de la red} antes de energizarla, para evitar la operación en isla hacia la red. Un ejemplo es el \emph{Intelligent Backup Power} de la F-150 Lightning, con el Ford Charge Station Pro y un sistema de integración con transferencia. Se tramita como sistema de respaldo (NEC 702 y 625.48: equipos interactivos listados) \cite{nfpa70}.
+\item \textbf{V2G (vehículo a red):} el vehículo inyecta energía a la red en paralelo con ella. Técnicamente es un recurso energético distribuido: requiere un inversor certificado UL 1741 SB / IEEE 1547-2018 con protección anti-isla, comunicación ISO 15118-20 y un contrato de interconexión. En Costa Rica quedaría bajo la Ley 10086 y el instructivo DC-03-IT-21-001 del ICE (los mismos requisitos del Proyecto~2) \cite{ley10086,iceIT}. A la fecha no se identificó un programa V2G de las distribuidoras ni un equipo bidireccional certificado de venta local, por lo que \textbf{no es viable hoy en el país}.
+\end{itemize}
+
+\subsection{Carga móvil o de asistencia en carretera}
+Hay tres fuentes de energía:
+\begin{itemize}
+\item \textbf{Baterías auxiliares transportables:} unidades modulares de CC de 10 a \SI{20}{\kilo\watt} que entregan pocos kWh por módulo.
+\item \textbf{Vehículos de servicio:} con un cargador alimentado por un generador de combustión (con emisiones y ruido) o por un banco de baterías.
+\item \textbf{V2V de emergencia:} como en el caso de la F-150.
+\end{itemize}
+Sus límites son la energía transportable (unos pocos kWh, suficientes para llegar al cargador más cercano), el peso, el costo por kWh y la logística. No se identificó una oferta comercial en Costa Rica, más allá de la asistencia de las agencias.
+
+\subsection{Carga integrada con generación fotovoltaica y almacenamiento}
+\begin{itemize}
+\item \textbf{Generador FV con inversor interconectado:} reduce la energía que se compra a la red. Lo regula la Ley 10086 con la modalidad de autoconsumo del ICE (Proyecto~2).
+\item \textbf{Batería estacionaria (UL 9540):} desplaza energía en el tiempo y, sobre todo, \emph{recorta picos de demanda}. Eso es valioso en una estación con cargo por demanda (sección~\ref{sec:economia}).
+\item \textbf{EMS:} coordina la generación, la batería y los cargadores.
+\end{itemize}
+La red sigue siendo la fuente principal y la referencia de tensión: los inversores interconectados se desconectan si la red falla (IEEE 1547). El sistema FV del Proyecto~2 está en el servicio del CAA, que es distinto del servicio nuevo de la estación, así que no puede compensar su medidor. Integrarlos exigiría otro sistema FV en el servicio de la estación (ampliación, sección~\ref{sec:ampliacion}).
+
+\subsection{Otras alternativas documentadas}
+\begin{itemize}
+\item \textbf{Carga inalámbrica (inductiva):} SAE J2954 define las clases WPT1 a WPT3, de 3,7 a \SI{11}{\kilo\volt\ampere}, con eficiencias cercanas a las de la carga conductiva. La oferta comercial es muy limitada y no se identificó en Costa Rica.
+\item \textbf{Vehículos pesados:} los buses y camiones usan CCS a 150--\SI{600}{\kilo\watt} en patio, y el sistema MCS (SAE J3271) para potencias del orden de megavatios. En Costa Rica, ARESEP ya propuso tarifas diferenciadas para la recarga de buses \cite{teletica}.
+\item \textbf{Pantógrafo:} carga conductiva por contacto superior (SAE J3105) en las terminales de buses, con potencias de 150--\SI{600}{\kilo\watt}.
+\item \textbf{Intercambio de baterías:} la batería descargada se \emph{retira} y se sustituye por una cargada en pocos minutos. Por eso es distinto de recargar la batería instalada en el vehículo: el modelo de negocio es el alquiler de baterías, exige vehículos diseñados para el intercambio y la carga ocurre en la estación de intercambio. Hay redes comerciales en China, para automóviles, y en Asia, para motocicletas, pero no se identificaron en Costa Rica.
+\end{itemize}
+
+\subsection{Tabla comparativa de modalidades}
+{\small
+\begin{longtable}{L{2.25cm}L{2.5cm}L{2.0cm}L{2.5cm}L{2.7cm}L{2.6cm}}
+\caption{Comparación de modalidades de carga (disponibilidad: CR = disponible en Costa Rica; Ext. = otros mercados; D = en desarrollo).}\label{tab:modalidades}\\
+\toprule
+\textbf{Modalidad} & \textbf{Principio / tensión y potencia} & \textbf{Conectores} & \textbf{Equipo requerido} & \textbf{Ventajas / limitaciones} & \textbf{Aplicación / disponibilidad}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Modalidad} & \textbf{Principio / tensión y potencia} & \textbf{Conectores} & \textbf{Equipo requerido} & \textbf{Ventajas / limitaciones} & \textbf{Aplicación / disponibilidad}\\
+\midrule\endhead
+Portátil 120~V (Modo 2, Nivel 1) & OBC; 120~V, 12--16~A, 1,4--1,9~kW & J1772, GB/T, Tipo 2 en el vehículo; NEMA 5-15/5-20 & Cable con IC-CPD; circuito dedicado con GFCI & Sin obra; muy lento (19--38~h del 20 al 80\,\%) & Vivienda, respaldo. CR\\
+Wallbox CA (Modo 3, Nivel 2) & OBC; 208/240~V, 16--80~A, 3,3--19,2~kW & J1772, GB/T, Tipo 2, NACS & EVSE fijo; circuito al 125\,\% & Buena relación costo/potencia; límite del OBC & Vivienda, condominio, trabajo. CR\\
+CA compartida en parqueos & Igual que la anterior, varios puntos & Igual & EVSE en red (OCPP), RFID, EMS, medición & Reparte capacidad; requiere gestión y reglas de uso & Comercios, empresas, instituciones. CR\\
+Rápida CC (Modo 4) & Rectificador externo; 480~V 3F; 25--400~kW & CCS1, CCS2, CHAdeMO, GB/T, NACS & Cargador CC, transformador o servicio propio & 20--80\,\% en 20--60~min; costo alto y cargo por demanda & Rutas, red pública. CR (red ICE)\\
+Pickup con salidas 120/240~V & Inversor de tracción; 2,4--9,6~kW & NEMA 5-20, L14-30 (salida) & EVSE portátil autorizado & Útil en emergencias; potencia baja, solo combinaciones documentadas & Trabajo de campo. CR (importación)\\
+V2V & CA desde el donante o adaptador propietario; 7--10~kW & J1772/NACS & Accesorio del fabricante & Rescate; pocos modelos & Ext.\\
+V2L & Inversor a bordo; potencia baja (pocos kW) & Adaptador del puerto & Adaptador del fabricante & Simple; potencia baja & Recreativo. CR (modelos importados)\\
+V2H/V2B & EVSE bidireccional y transferencia & CCS1, CHAdeMO & EVSE bidireccional, interruptor de transferencia & Respaldo; costo alto, pocos modelos & Ext.\\
+V2G & Inversor interconectado & CCS (ISO 15118-20), CHAdeMO & EVSE bidireccional UL 1741 SB, contrato & Servicios a la red; sin marco local & Ext./D\\
+Carga móvil & Batería o generador transportable; 3--20~kW & CCS, J1772 & Unidad móvil & Rescate; poca energía & Ext.\\
+Con FV y batería & FV + almacenamiento + EMS & -- & Inversor UL 1741 SB, batería UL 9540 & Reduce energía y picos; inversión adicional & Ext./CR (FV sí)\\
+Inalámbrica & Inducción; 3,7--11~kVA & Placa SAE J2954 & Bobinas en piso y vehículo & Comodidad; oferta escasa & Ext./D\\
+Pesados / pantógrafo & CC 150~kW--MW & CCS, MCS, SAE J3105 & Infraestructura de patio & Flotas; muy alta potencia & Ext. (buses en CR, piloto)\\
+Intercambio de baterías & Sustitución de la batería & Interfaz mecánica propia & Estación robotizada & Minutos; requiere flota compatible & Ext.\\
+\bottomrule
+\end{longtable}}

@@ -1,0 +1,123 @@
+% =====================================================================
+\section{Comparación de modelos comerciales y selección de equipos}
+\label{sec:equipos}
+
+\subsection{Cargadores}
+Se compararon siete equipos de cinco fabricantes: un equipo portátil, tres de pared o pedestal en CA y tres cargadores rápidos en CC (Cuadro~\ref{tab:cargadores}). Los precios son de referencia, antes de impuestos y sin instalación. Cuando el fabricante no publica precio, se indica una estimación de mercado como supuesto.
+
+\begin{landscape}
+\thispagestyle{lscape}
+{\scriptsize
+\begin{longtable}{L{2.6cm}L{2.0cm}L{2.6cm}L{2.8cm}L{3.3cm}L{3.6cm}L{3.0cm}L{2.6cm}}
+\caption{Comparación de cargadores (consulta: 1 de noviembre de 2026).}\label{tab:cargadores}\\
+\toprule
+\textbf{Equipo (fabricante, modelo, mercado)} & \textbf{Tipo / disponibilidad en CR} & \textbf{Entrada} & \textbf{Salida, conectores, vehículos simultáneos} & \textbf{Comunicación, autenticación, medición, gestión} & \textbf{Certificaciones, protecciones, ambiente, instalación} & \textbf{Precio (fecha, fuente), garantía, mantenimiento} & \textbf{Adecuación al sitio}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Equipo} & \textbf{Tipo / CR} & \textbf{Entrada} & \textbf{Salida} & \textbf{Comunicación} & \textbf{Certificaciones} & \textbf{Precio} & \textbf{Adecuación}\\
+\midrule\endhead
+Ford Mobile Power Cord (F-150 Lightning, EE. UU.) & Portátil, Modo 2 / Nivel 1--2. Se importa con el vehículo; sin representación propia de Ford en CR & 120~V (12~A) o 240~V con NEMA 14-50; adaptador L14-30 para Pro Power Onboard & 1,4~kW (120~V) a 7,2~kW (30~A según Ford); J1772; 1 vehículo & Ninguna & Control y protección en el cable (IC-CPD); uso según el manual de Ford & USD 600 con adaptador (Ford Authority, abr. 2025) \cite{fordAuthority} & No apto para uso público: sin autenticación ni medición. Útil para V2V de emergencia\\
+\textbf{Autel MaxiCharger AC Elite 50A} (MC50AHS, EE. UU.) & Pared o pedestal, Modo 3 / Nivel 2. Autel tiene representación regional en Latinoamérica; distribuidor local por confirmar \supuesto{} & 208/240~V $\pm$15\,\%, 60~Hz, L1/L2/PE, cableado & Ajustable de 6 a 50~A: 8,3~kW a 208~V con 40~A; J1772 con cable de 7,5~m; 1 vehículo & Wi-Fi, Ethernet, Bluetooth, RS485; aplicación, RFID; medición $\pm$1\,\%; OpenADR 2.0b & UL 2594, UL 2231-1/-2, NEC 625, CSA; CCID 20~mA; SPD integrado; NEMA~4; $-40$ a 55~°C & USD 639 de lista, USD 525 en oferta (tienda Autel, 1 nov 2026) \cite{autelStore}; garantía de 36 meses & \textbf{Seleccionado} para AC-1/AC-2\\
+\textbf{MDAC 132EN K} (cabezal GB/T o Tipo 2; mercado latinoamericano) & Pared o pedestal, Modo 3. Vendido en la región (Colombia) \cite{mdac} & 110--240~V, 60~Hz, monofásico & 7~kW, 32~A; GB/T (opcional Tipo 2), cable de 5~m; 1 vehículo & OCPP 1.6, 4G o Ethernet; LED & GB/T 20234, GB/T 18487, NB/T 33002/33008, IEC 61851-21-2. Sin listado UL. Protección contra fugas, sobretensión, sobrecorriente y rayos; IP54 & Sin precio público; USD 650 \supuesto{}; garantía por confirmar & \textbf{Seleccionado} para AC-3/AC-4 (único con GB/T verificado)\\
+ABB Terra AC TAC-W7-G5-R-C-0 (Europa/Oceanía) & Pared, Modo 3. ABB tiene presencia en CR, pero este es un modelo IEC & 184--276~V, 1F, 50/60~Hz, 32~A & 7~kW; Tipo 2 con cable de 5~m; 1 vehículo & Wi-Fi, Ethernet, Bluetooth, Modbus, 4G; RFID; OCPP; medidor CA & CE (EN 61851-1, EN 61851-23); RCD con detección de 6~mA CC; IP54, IK08 & No publicado & Descartado: el conector Tipo 2 es poco común en la flota del país \cite{abbTAC}\\
+\textbf{Autel MaxiCharger DC Fast 60~kW} (UF060A3001, EE. UU.) & Rápido CC, Modo 4. Representación regional de Autel \supuesto{} & 480~V CA (-15/+10\,\%), 60~Hz, 3P+PE sin neutro; 83~A nominal y 91~A máximo & 60~kW; 150--950~V CC; CCS1 (200~A) + CHAdeMO (125~A); 2 vehículos con potencia compartida & 4G, Wi-Fi, Ethernet; RFID, QR, tarjeta de crédito (opcional); OCPP 1.6J/2.0.1; ISO 15118, DIN 70121; medidor clase~A & UL 2202, UL 2231-1/-2, NEC 625, CSA C22.2 No.~107.1; IMD, SPD, falla a tierra; NEMA 3R, IK10; SCCR $\ge$ 65~kA; eficiencia $\ge$ 96\,\% & Sin precio público; USD 28\,000 \supuesto{}, a partir de un equipo de 60~kW de otra marca a USD 21\,800 \cite{topdon}; garantía de 24 meses & \textbf{Seleccionado} para DC-1\\
+ABB Terra 124 (versión NA) & Rápido CC, Modo 4. ABB tiene presencia en CR & 480Y/277~V $\pm$10\,\%, 3F sin neutro; 153~A, 128~kVA; interruptor recomendado de 200~A & 120~kW o 2$\times$60~kW; CCS1 (CCS+CHAdeMO bajo pedido), 150--920~V; 2 vehículos & 4G, Ethernet; RFID, pago; OCPP 1.6J/2.0.1; ISO 15118 & SCCR 65~kA; IP54, NEMA 3R; fp $>$ 0,96 & No publicado & Alternativa de ampliación: duplica la demanda y exige un alimentador de 4/0 o mayor \cite{abbTerra124}\\
+Zerova DS 60~kW (UL y CE) & Rápido CC, Modo 4 & UL: 480~V 3F, 92~A. CE: 380--415~V, 115~A & 60~kW. UL: CCS1 + CHAdeMO. CE: CCS2, CHAdeMO o \textbf{GB/T} & ISO 15118, DIN 70121, GB/T 27930 & UL 2202, UL 2231 (UL) o IEC 61851-1/-23 (CE) & No publicado & Muestra que el GB/T en CC solo existe en la variante de 400~V \cite{zerova}\\
+\bottomrule
+\end{longtable}}
+\end{landscape}
+
+\subsection{Vehículos}
+Se compararon cinco vehículos de cinco fabricantes: dos automóviles, dos SUV y una pickup (Cuadro~\ref{tab:vehiculos}). Los datos de capacidad y potencia son los que declara el fabricante para la versión y el mercado indicados.
+
+\begin{landscape}
+\thispagestyle{lscape}
+{\scriptsize
+\begin{longtable}{L{2.9cm}L{2.6cm}L{1.6cm}L{2.7cm}L{1.7cm}L{1.7cm}L{4.2cm}L{4.4cm}}
+\caption{Comparación de vehículos de referencia.}\label{tab:vehiculos}\\
+\toprule
+\textbf{Modelo} & \textbf{Año, versión, mercado} & \textbf{Batería útil} & \textbf{Conectores (CA / CC)} & \textbf{Máx. CA} & \textbf{Máx. CC} & \textbf{Tiempo de carga declarado (condiciones)} & \textbf{V2L / V2V / V2H / V2G}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Modelo} & \textbf{Año, mercado} & \textbf{Batería} & \textbf{Conectores} & \textbf{CA} & \textbf{CC} & \textbf{Tiempo} & \textbf{Bidireccional}\\
+\midrule\endhead
+BYD Dolphin (automóvil) & 2024, Costa Rica (ficha local) & 44,9~kWh (LFP Blade) & \textbf{GB/T CA / GB/T CC} & 6,6~kW & 60~kW & CC: 30--80\,\% en 0,5~h; CA: 0--100\,\% en 7--8~h \cite{bydDolphin} & La ficha de CR no declara V2L. En Europa se vende con Tipo 2/CCS2 y V2L\\
+Nissan Leaf 40~kWh (automóvil) & 2023, EE. UU. & $\approx$39~kWh \supuesto{} & J1772 / CHAdeMO & 6,6~kW & $\approx$46~kW (50~kW nominal) & CC 50~kW: unos 40~min del 20 al 80\,\% \cite{nissan} & V2H/V2B CHAdeMO con equipos aprobados por Nissan en algunos mercados; sin V2L de fábrica\\
+Hyundai Ioniq 5 Long Range (SUV) & 2024, EE. UU. & 77,4~kWh & J1772 / CCS1 (800~V) & 10,9~kW & $\approx$230~kW & 10--80\,\% en unos 18~min con 350~kW \cite{hyundai} & V2L con adaptador en el puerto de carga (potencia según el mercado, no verificada); sin V2V, V2H ni V2G autorizados para ese mercado\\
+Tesla Model Y Long Range (SUV) & 2024, EE. UU. & $\approx$75~kWh \supuesto{} & NACS (adaptadores Tesla J1772 y CCS1) & 11,5~kW & 250~kW & Hasta 250~kW en Supercharger \cite{tesla} & Sin V2L, V2V, V2H ni V2G\\
+Ford F-150 Lightning Extended Range (pickup) & 2024, EE. UU. & 131~kWh & J1772 / CCS1 (entrada); salidas de 120 y 240~V & 11,3~kW (48~A); 19,2~kW con Charge Station Pro & $\approx$155~kW & 15--80\,\% en unos 41~min con 150~kW \cite{fordLightning} & V2L de 2,4 o 9,6~kW; V2V Nivel 2 con el Mobile Power Cord \cite{fordFAQ}; V2H con Intelligent Backup Power; sin V2G\\
+\bottomrule
+\end{longtable}}
+\end{landscape}
+
+\subsection{Conectores y compatibilidad por versión y mercado}
+\label{sec:compat}
+\begin{itemize}
+\item \textbf{Tipo 1 / SAE J1772} (CA): Leaf, Ioniq~5 y F-150 de EE. UU.; Tesla con el adaptador que trae el vehículo.
+\item \textbf{Tipo 2 / IEC 62196-2} (CA): versiones europeas; por ejemplo, el BYD Dolphin europeo.
+\item \textbf{CCS1} (Combo~1, CC): Ioniq~5 y F-150 de EE. UU.
+\item \textbf{CCS2} (Combo~2): Europa y parte de Latinoamérica.
+\item \textbf{CHAdeMO}: Nissan Leaf, muy común en el mercado de usados de Costa Rica.
+\item \textbf{GB/T} (CA y CC): vehículos chinos de mercado interno y \textbf{el BYD Dolphin vendido oficialmente en Costa Rica}, según su ficha \cite{bydDolphin}.
+\item \textbf{NACS / SAE J3400}: Tesla y una parte creciente de las marcas estadounidenses desde 2025.
+\end{itemize}
+El caso del BYD Dolphin muestra por qué la compatibilidad debe verificarse por versión y mercado: \emph{el mismo modelo} usa GB/T en Costa Rica y Tipo 2/CCS2 en Europa. Un usuario que compre un Dolphin europeo importado no podría usar los puntos AC-3/AC-4.
+
+\textbf{Adaptadores.} Solo se consideran válidos los adaptadores aprobados por el fabricante del vehículo y con límites eléctricos conocidos:
+\begin{itemize}
+\item \textbf{Tesla:} su adaptador J1772 (incluido con el vehículo) y su adaptador CCS1 (accesorio oficial). Con ellos un Model Y puede usar AC-1/AC-2 y el conector CCS1 de DC-1, con el límite de 60~kW del cargador.
+\item \textbf{Adaptadores CCS1$\rightarrow$GB/T, CHAdeMO$\rightarrow$CCS o GB/T$\rightarrow$J1772 de terceros:} no los aprueban los fabricantes. Sus protocolos de comunicación son distintos (PLC, CAN o GB/T 27930) y la protección contra falla puede quedar inutilizada. ARESEP informó daños en cargadores de la red por incompatibilidad con vehículos chinos, y el ICE recomienda usar solo adaptadores aprobados por el fabricante del vehículo o del cargador \cite{delfinoAresep}. \emph{La forma física no demuestra compatibilidad}: el diseño no depende de adaptadores.
+\end{itemize}
+
+\begin{table}[H]
+\centering\small
+\caption{Matriz de compatibilidad de los vehículos de referencia con los puntos de la estación (sin adaptadores no aprobados).}\label{tab:matriz}
+\begin{tabularx}{\textwidth}{L{4.0cm}YYYY}
+\toprule
+\textbf{Vehículo} & \textbf{AC-1/AC-2 (J1772)} & \textbf{AC-3/AC-4 (GB/T)} & \textbf{DC-1 CCS1} & \textbf{DC-1 CHAdeMO}\\
+\midrule
+BYD Dolphin (CR) & No & \textbf{Sí}, 6,6~kW (OBC) & No & No (usar la red del ICE con GB/T)\\
+Nissan Leaf & \textbf{Sí}, 6,6~kW (OBC) & No & No & \textbf{Sí}, $\le$46~kW\\
+Hyundai Ioniq 5 & \textbf{Sí}, 8,3~kW (EVSE a 208~V) & No & \textbf{Sí}, 60~kW (cargador) & No\\
+Tesla Model Y & \textbf{Sí}, con adaptador Tesla, 8,3~kW & No & \textbf{Sí}, con adaptador CCS1 Tesla, 60~kW & No\\
+Ford F-150 Lightning & \textbf{Sí}, 8,3~kW (EVSE a 208~V) & No & \textbf{Sí}, 60~kW (cargador) & No\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Selección de equipos y justificación}
+\label{sec:seleccion}
+\begin{itemize}
+\item \textbf{DC-1, Autel MaxiCharger DC Fast 60~kW (CCS1 + CHAdeMO).}
+  \begin{itemize}
+  \item Tiene listado UL 2202 a 480~V, así que se conecta directamente al servicio de 480Y/277~V sin transformador intermedio.
+  \item Toma 91~A como máximo, lo que cabe en un alimentador de 200~A junto con los equipos de CA. El ABB Terra 124 toma 153~A y el feeder pasaría a 250~A.
+  \item Cubre CCS1 (estadounidenses y Tesla con adaptador) y CHAdeMO (Leaf, flota de usados), que junto con GB/T son los conectores de la red del ICE.
+  \item Trae medición clase~A, OCPP y gestión de potencia para el EMS.
+  \item Su SCCR de 65~kA supera la corriente de falla disponible.
+  \end{itemize}
+  No se encontró un equipo UL a 480~V con GB/T en CC, por lo que los GB/T se atienden en CA.
+\item \textbf{AC-1/AC-2, Autel MaxiCharger AC Elite 50A cableado.} Tiene listado UL 2594 y UL 2231, protección NEMA~4, cable de 7,5~m y corriente ajustable, que se fija en 40~A para el circuito de 50~A. Es de la misma familia que DC-1, de modo que hay un solo proveedor, una plataforma y un contrato de mantenimiento. Su costo es bajo.
+\item \textbf{AC-3/AC-4, cargador CA con conector GB/T (MDAC 132EN K).} Es el único equipo GB/T de CA con ficha técnica verificable que se encontró (OCPP, IP54, 32~A, 110--240~V). Como no tiene listado UL:
+  \begin{itemize}
+  \item Antes de comprarlo se exige al proveedor el certificado de conformidad con GB/T 18487.1 / IEC 61851-1 emitido por un organismo acreditado. Eso documenta la evaluación de la conformidad que exige el RTCR 458 (art.~5.3).
+  \item Se instala aguas arriba un diferencial tipo~B de 30~mA.
+  \item Se confirma con el fabricante la conexión entre fases a 208~V.
+  \end{itemize}
+  Como alternativa se puede usar el cargador de pared GB/T que BYD entrega a sus clientes, por ser un equipo aprobado por el fabricante del vehículo.
+\item \textbf{Vehículos de referencia:}
+  \begin{itemize}
+  \item BYD Dolphin: GB/T de CA, la flota china oficial del país.
+  \item Nissan Leaf: J1772 y CHAdeMO, la flota de usados.
+  \item Hyundai Ioniq~5: CCS1 de 800~V.
+  \item Tesla Model Y: NACS con adaptadores aprobados.
+  \item Ford F-150 Lightning: pickup con batería grande, el caso más exigente en tiempo de carga.
+  \end{itemize}
+\item \textbf{Otros componentes:}
+  \begin{itemize}
+  \item Transformador seco T-VE de 45~kVA, 480$\Delta$--208Y/120~V (UL 1561), para obtener 208~V a partir del servicio de 480~V.
+  \item Tableros NEMA 3R TD-VE y TD-AC (UL 67) e interruptores UL 489.
+  \item SPD UL 1449, diferenciales tipo~B y paros de emergencia.
+  \item Bolardos, topes de rueda, iluminación LED y rótulos INTE N120.
+  \end{itemize}
+\end{itemize}

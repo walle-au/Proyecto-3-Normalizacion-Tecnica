@@ -1,0 +1,84 @@
+==============================================================================
+MEMORIA DE CÁLCULO ELÉCTRICO - ESTACIÓN DE CARGA VE (NEC 2020, Art. 625, 215, 240, 250, 310, 450)
+==============================================================================
+
+1. CUADRO DE CARGAS (corriente máxima de entrada de cada EVSE, NEC 625.42)
+  DC-1  Autel MaxiCharger DC Fast 60 kW (UF060A3001): I = 91.0 A a 480 V 3F -> 75.7 kVA
+  AC-1  monofásico 208 V entre fases A-B: I = 40 A -> 8.32 kVA
+  AC-2  monofásico 208 V entre fases B-C: I = 40 A -> 8.32 kVA
+  AC-3  monofásico 208 V entre fases C-A: I = 32 A -> 6.66 kVA
+  AC-4  monofásico 208 V entre fases A-B: I = 32 A -> 6.66 kVA
+  Auxiliares 120 V (tomacorriente, control, comunicaciones) (S): 1.00 kVA
+  Total lado 208 V: 30.95 kVA  (T-VE de 45 kVA -> utilización 69 %)
+  Alumbrado 277 V: 300 W
+  Corrientes de línea en 208 V (suma fasorial, fp = 1):
+    Fase A: 92.3 A
+    Fase B: 98.3 A
+    Fase C: 70.8 A
+  Fase más cargada: 98.3 A; 125 % = 122.9 A <= principal de TD-AC (125 A)
+  Corriente nominal de T-VE: primario 54.1 A, secundario 124.9 A
+
+2. CIRCUITOS DERIVADOS DE LOS CARGADORES DE CA (NEC 625.40, 625.41, 210.19, 240.4)
+   Dos circuitos por tubería (4 conductores portadores de corriente -> factor 0,80).
+  AC-1: I = 40 A; 125 % = 50 A -> interruptor 2P 50 A; #6 Cu THWN-2 (ampacidad corregida 57.6 A >= 50 A); EGC #10; L = 18 m; caída 2.33 V (1.12 %)
+  AC-2: I = 40 A; 125 % = 50 A -> interruptor 2P 50 A; #6 Cu THWN-2 (ampacidad corregida 57.6 A >= 50 A); EGC #10; L = 18 m; caída 2.33 V (1.12 %)
+  AC-3: I = 32 A; 125 % = 40 A -> interruptor 2P 40 A; #8 Cu THWN-2 (ampacidad corregida 42.2 A >= 40 A); EGC #10; L = 13 m; caída 2.13 V (1.02 %)
+  AC-4: I = 32 A; 125 % = 40 A -> interruptor 2P 40 A; #8 Cu THWN-2 (ampacidad corregida 42.2 A >= 40 A); EGC #10; L = 13 m; caída 2.13 V (1.02 %)
+
+3. TRANSFORMADOR SECO T-VE 45 kVA 480D-208Y/120 V (NEC 450.3(B), 240.21(C), 250.30)
+  Primario: 125 % x 54.1 A = 67.7 A -> interruptor 3P 70 A (Tabla 450.3(B), nota 1)
+  Conductores primarios #4 Cu (85 A >= 70 A); EGC #8
+  Secundario: I = 124.9 A -> interruptor principal de TD-AC 125 A a <= 3 m (240.21(C)(2))
+  Conductores secundarios #1 Cu (130 A >= 125 A), neutro #1
+  Sistema derivado separadamente: puente de unión en T-VE y GEC #6 Cu al electrodo de la estación (250.30(A), 250.66)
+
+4. CIRCUITO DEL CARGADOR RÁPIDO DC-1 (480 V, 3P + PE)
+  125 % x 91 A = 113.75 A -> interruptor 3P 125 A, bloqueable (625.43)
+  #1 Cu THWN-2: 130 A >= 113.8 A; EGC #6; L = 8 m; caída 0.64 V (0.13 %)
+
+5. ALIMENTADOR AL-VE: NICHO DEL TRANSFORMADOR ICE -> TD-VE (NEC 215.2(A)(1), 215.3)
+  Carga continua: DC-1 91.0 A + T-VE 54.1 A (capacidad nominal) + alumbrado 1.1 A = 146.2 A
+  125 % = 182.8 A -> interruptor IP-VE 3P 200 A
+  Conductor #3/0 Cu THWN-2: 200 A >= 200 A; neutro #4 (solo carga 277 V); EGC #6
+  Corriente real con la carga instalada: 129.3 A; L = 120 m; caída 7.40 V (1.54 %)
+    alternativa #2/0: ampacidad 175 A, caída 1.97 %
+    alternativa #4/0: ampacidad 230 A, caída 1.26 %
+
+   Caída de tensión total (alimentador + ramal), criterio de diseño <= 5 % total y <= 3 % por tramo
+    DC-1: 1.54 + 0.13 = 1.68 %
+    AC-1: 1.54 + 0.13 (secundario T-VE) + 1.12 = 2.79 % (sin la regulación interna de T-VE, que se compensa con su derivación de +2,5 %)
+    AC-2: 1.54 + 0.13 (secundario T-VE) + 1.12 = 2.79 % (sin la regulación interna de T-VE, que se compensa con su derivación de +2,5 %)
+    AC-3: 1.54 + 0.13 (secundario T-VE) + 1.02 = 2.69 % (sin la regulación interna de T-VE, que se compensa con su derivación de +2,5 %)
+    AC-4: 1.54 + 0.13 (secundario T-VE) + 1.02 = 2.69 % (sin la regulación interna de T-VE, que se compensa con su derivación de +2,5 %)
+
+6. CANALIZACIONES PVC CÉDULA 40 SUBTERRÁNEAS (Cap. 9 Tablas 1, 4 y 5; 300.5; 352)
+  AL-VE (alimentador): 5 conductores, 604 mm2; mínimo 2"; adoptado 3" -> ocupación 12.9 % (<= 40 %)
+  DC-1: 4 conductores, 335 mm2; mínimo 1-1/4"; adoptado 1-1/2" -> ocupación 26.2 % (<= 40 %)
+  AC-1 + AC-2: 5 conductores, 144 mm2; mínimo 1"; adoptado 1" -> ocupación 26.9 % (<= 40 %)
+  AC-3 + AC-4: 5 conductores, 108 mm2; mínimo 3/4"; adoptado 1" -> ocupación 20.1 % (<= 40 %)
+  Alumbrado: 3 conductores, 26 mm2; mínimo 1/2"; adoptado 3/4" -> ocupación 7.9 % (<= 40 %)
+  Profundidad: 600 mm bajo zona de rodamiento del parqueo (Tabla 300.5, columna 3, fila de calles y parqueos)
+  Se deja un ducto de 3" de reserva paralelo al alimentador para ampliación.
+
+7. CORRIENTE DE CORTOCIRCUITO DISPONIBLE (NEC 110.9, 110.10, 110.24)
+  Bornes del transformador ICE (barra infinita, Z = 5.75 % (S)): 15.7 kA
+  En TD-VE (después de 120 m de #3/0): 5.8 kA
+  En TD-AC (secundario de T-VE, Z = 4.5 % (S), barra infinita): 2.8 kA
+  Capacidades: IP-VE >= 35 kA a 480 V; TD-VE >= 14 kA; TD-AC >= 10 kA; DC-1 SCCR >= 65 kA (hoja técnica)
+
+8. PUESTA A TIERRA Y EQUIPOTENCIALIZACIÓN (NEC 250.32, 250.30, 250.52, 250.53, 250.66, 250.122)
+  Electrodo de la estación: 2 varillas Cu 16 mm x 2,4 m separadas >= 1,8 m (250.53(A)(2) y (A)(3)), unidas con #4 desnudo
+  GEC desde TD-VE y desde T-VE: #6 Cu, suficiente porque termina solo en varillas (250.66(A))
+  EGC continuo en cada circuito (250.122); pedestales, bolardos metálicos y luminarias unidos al EGC
+  Neutro y tierra separados en TD-VE (equipo de alimentador, 250.32(B)(1)); unión N-T solo en el servicio y en T-VE
+
+9. RESUMEN DE PROTECCIONES
+  IP-VE  3P 200 A, 480 V, >= 35 kA, con disparo en derivación (paro de emergencia)
+  DC-1   3P 125 A, 480 V (bloqueable)
+  T-VE   3P 70 A, 480 V (primario)   |  TD-AC principal 3P 125 A, 208 V
+  AC-1   2P 50 A, 208 V, #6 Cu, EGC #10
+  AC-2   2P 50 A, 208 V, #6 Cu, EGC #10
+  AC-3   2P 40 A, 208 V, #8 Cu, EGC #10
+  AC-4   2P 40 A, 208 V, #8 Cu, EGC #10
+  AC-3/AC-4 (equipo IEC sin listado UL): interruptor diferencial tipo B 30 mA aguas arriba (IEC 60364-7-722)
+  SPD tipo 1 en TD-VE (UL 1449) y tipo 2 en TD-AC

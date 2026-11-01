@@ -1,0 +1,55 @@
+\providecommand{\revlamina}{1}
+% Preámbulo común de las láminas VE (A3 horizontal, 420 x 297 mm)
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,patterns,calc,babel,positioning,decorations.pathreplacing}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,},mode=text}
+\DeclareSIUnit\kWp{kWp}
+\DeclareSIUnit\ohm{\ensuremath{\Omega}}
+
+\definecolor{inv1}{RGB}{37,99,180}
+\definecolor{inv2}{RGB}{22,128,84}
+\definecolor{nfpa}{RGB}{200,30,30}
+\definecolor{viento}{RGB}{40,70,200}
+\definecolor{sombra}{RGB}{230,130,0}
+\definecolor{losa}{RGB}{120,190,200}
+\definecolor{dc}{RGB}{225,95,0}
+\definecolor{exist}{RGB}{110,110,110}
+\definecolor{nuevo}{RGB}{190,20,20}
+
+% Marcador de referencia numerada
+\newcommand{\refm}[2]{\node[circle,draw=black,fill=white,line width=0.35pt,inner sep=0pt,minimum size=3.4mm,font=\fontsize{5.5}{6}\selectfont\bfseries] at #1 {#2};}
+
+% Cajetín: \cajetin{lamina}{titulo}{contenido}{escala}{hoja}
+\newcommand{\cajetin}[5]{%
+  \draw[line width=0.6pt] (250,10) rectangle (410,58);
+  \draw[line width=0.3pt] (250,46) -- (410,46);
+  \draw[line width=0.3pt] (250,34) -- (410,34);
+  \draw[line width=0.3pt] (250,22) -- (410,22);
+  \draw[line width=0.3pt] (370,10) -- (370,34);
+  \draw[line width=0.3pt] (330,10) -- (330,22);
+  \node[anchor=north west,font=\fontsize{6}{7}\selectfont,align=left] at (251.5,57) {\textbf{Instituto Tecnológico de Costa Rica} -- EL-4601 Normalización Técnica para Electrónica\\Proyecto No.~3: Cargadores para vehículos eléctricos -- diseño en Costa Rica};
+  \node[anchor=north west,font=\fontsize{6}{7}\selectfont,align=left] at (251.5,45) {\textbf{Proyecto:} Estación de carga VE de uso público -- Parqueo norte, campus UTN Villa Bonita (CAA-TEC)\\\textbf{Propietario:} Universidad Técnica Nacional -- Catastro A-652521-2000};
+  \node[anchor=north west,font=\fontsize{6.5}{7.5}\selectfont,align=left,text width=115mm] at (251.5,33) {\textbf{Contenido:} #2\\#3};
+  \node[anchor=north west,font=\fontsize{5.5}{6.5}\selectfont,align=left] at (371.5,33) {\textbf{Lámina}};
+  \node[font=\fontsize{16}{18}\selectfont\bfseries] at (390,25.5) {#1};
+  \node[anchor=north west,font=\fontsize{5.5}{6.5}\selectfont,align=left] at (251.5,21) {\textbf{Elaboró:} Grupo de trabajo EL-4601\\\textbf{Revisó:} \rule{25mm}{0.2pt}\\\textbf{Fecha:} 3/11/2026 \quad \textbf{Rev.:} \revlamina};
+  \node[anchor=north west,font=\fontsize{5.5}{6.5}\selectfont,align=left] at (331.5,21) {\textbf{Escala (A3):}\\#4};
+  \node[anchor=north west,font=\fontsize{5.5}{6.5}\selectfont,align=left] at (371.5,21) {\textbf{Hoja:}\\#5};
+}
+% Marco de la lámina
+\newcommand{\marco}{%
+  \draw[line width=0.2pt,white] (0,0) rectangle (420,297);
+  \draw[line width=0.8pt] (10,10) rectangle (410,287);
+}
+
+\definecolor{ac}{RGB}{37,99,180}
+\definecolor{gbt}{RGB}{22,128,84}
+\definecolor{dcc}{RGB}{225,95,0}
+\definecolor{ali}{RGB}{190,20,20}
+\definecolor{tierra}{RGB}{30,140,60}

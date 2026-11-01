@@ -1,0 +1,156 @@
+\documentclass[border=0pt]{standalone}
+\newcommand{\revlamina}{1}
+\input{lamina_comun.tex}
+\tikzset{
+  eq/.style={draw,thick,rounded corners=1.5pt,align=center,fill=white,inner sep=2pt,font=\fontsize{5.6}{6.8}\selectfont},
+  ex/.style={draw,thick,dashed,gray!70!black,rounded corners=1.5pt,align=center,fill=gray!8,inner sep=2pt,font=\fontsize{5.6}{6.8}\selectfont},
+  cb/.style={draw,line width=0.5pt,fill=white,minimum width=9mm,minimum height=4.2mm,align=center,inner sep=0.5pt,font=\fontsize{5}{5.6}\selectfont},
+  cab/.style={font=\fontsize{4.8}{5.8}\selectfont,align=left,fill=white,inner sep=0.6pt},
+  w/.style={line width=0.9pt},
+  w480/.style={line width=1.2pt,ali},
+  gnd/.style={thick,tierra,dashed},
+  com/.style={thick,blue!60!black,densely dotted},
+}
+% símbolo de tierra
+\newcommand{\simtierra}[1]{\draw[tierra,line width=0.6pt] #1 ++(-1.6,0) -- ++(3.2,0) ++(-2.6,-0.7) -- ++(2.0,0) ++(-1.5,-0.7) -- ++(1.0,0);}
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm,>=Latex]
+\marco
+\node[anchor=north west,font=\fontsize{10}{12}\selectfont\bfseries] at (15,283) {DIAGRAMA UNIFILAR -- ESTACIÓN DE CARGA VE (DESDE EL TRANSFORMADOR DEL ICE HASTA CADA CARGADOR)};
+
+% ---------------- FUENTE ICE (existente)
+\node[ex,minimum width=44mm,minimum height=14mm] (TX) at (42,250) {\textbf{Transformador ICE N.\textsuperscript{o} 119688} (existente)\\750 kVA, 34,5 kV -- 480Y/277 V, 3F 4H\\$Z$ = 5,75 \% (S) $\Rightarrow$ $I_{cc}$ $\approx$ 15,7 kA};
+\draw[w,gray!70!black] (TX.south) -- (42,228);
+\draw[line width=1.4pt,gray!70!black] (22,228) -- (62,228);
+\node[cab,anchor=south west] at (22,228.6) {Bornes secundarios 480Y/277 V (nicho, E01)};
+% salida existente al CAA
+\draw[w,gray!70!black,dashed] (28,228) -- (28,214);
+\node[ex,minimum width=20mm] (CAA) at (28,206) {Interruptor 200 A/3P\\18 kA (existente)\\$\rightarrow$ CAA-TEC (P2)};
+% medición ICE nueva
+\draw[w480] (52,228) -- (52,218);
+\node[eq,draw=red!70!black,dashed,fill=red!4,minimum width=24mm] (MED) at (52,211) {\textbf{MED-VE} (ICE)\\medición indirecta 3 TC\\medidor nuevo, servicio propio};
+\draw[w480] (MED.south) -- (52,196);
+\node[cb,draw=ali,line width=0.8pt] (IP) at (52,191) {\textbf{IP-VE}\\200 A 3P};
+\node[cab,anchor=west] at (57.5,191) {PowerPact JGL36200\\480 V, 35 kA\\NEMA 3R en el nicho};
+\draw[w480] (IP.south) -- (52,170);
+\node[cab,anchor=west,text width=40mm] at (54,176) {\textbf{AL-VE}: 3\#3/0 + N\#4 + EGC\#6 Cu THWN-2\\PVC 3'' subterráneo (+ 3'' reserva)\\L $\approx$ 120 m (S); $\Delta V$ = 1,54 \%\\Ampacidad 200 A $\ge$ 1,25 $\times$ 146,2 A};
+\draw[w480] (52,170) -- (52,160) -- (110,160) -- (110,255) -- (120,255);
+\node[cab] at (85,162.5) {zanja 600 mm (VE-03, D2)};
+% CT EMS
+\draw[com,fill=white] (110,170) circle (2.2);
+\node[cab,anchor=east] at (107.5,170) {TC del EMS};
+
+% ---------------- TD-VE
+\node[eq,draw=red!70!black,minimum width=28mm,minimum height=10mm,anchor=north] (TDVEh) at (134,268) {\textbf{TD-VE} -- tablero 480Y/277 V, 3F 4H\\barras 225 A, NEMA 3R, $\ge$ 14 kA\\$I_{cc}$ disponible $\approx$ 5,8 kA};
+\node[cb,draw=ali,line width=0.8pt] (MB) at (126,255) {PRINC.\\200 A 3P};
+\draw[w480] (120,255) -- (MB.west);
+\node[cab,anchor=north] at (126,251.5) {disparo en\\derivación (EPO)};
+\draw[line width=2pt,ali] (138,258) -- (138,110);
+\draw[w480] (MB.east) -- (138,255);
+\node[cab,anchor=south,rotate=90] at (141,180) {barra TD-VE 480Y/277 V};
+% SPD tipo 1
+\node[cb] (SPD1) at (128,236) {SPD\\tipo 1};
+\draw[w] (SPD1.east) -- (138,236);
+% EPO
+\node[circle,draw=black,fill=red,minimum size=3.5mm,inner sep=0pt] (EPO) at (122,222) {};
+\node[cab,anchor=east,align=right] at (119,222) {EPO-1 / EPO-2\\(VE-01)};
+\draw[com,red!70!black] (EPO.north) -- (MB.south |- 0,246) node[cab,pos=0.5,right]{};
+% tierra TD-VE
+\draw[gnd] (130,110) -- (130,104) node[cab,below=3.2mm,anchor=north]{};
+\simtierra{(130,104)}
+\node[cab,anchor=north,align=center] at (130,100) {GEC \#6 Cu a 2 varillas\\16 mm $\times$ 2,4 m (250.32)\\N y T separados (250.32(B))};
+
+% ---------------- DC-1
+\node[cb] (CBDC) at (152,248) {3P 125 A\\bloqueable};
+\draw[w480] (138,248) -- (CBDC.west);
+\draw[w480] (CBDC.east) -- (300,248);
+\node[cab,anchor=south west] at (160,249) {3\#1 + EGC\#6 Cu THWN-2, PVC 1-1/2'', 8 m, $\Delta V$ 0,13 \% $\cdot$ 1,25 $\times$ 91 A = 113,8 A $\le$ 130 A};
+\node[eq,draw=dcc,line width=1pt,minimum width=56mm,minimum height=20mm,anchor=west] (DC1) at (300,248) {\textbf{DC-1} -- Autel MaxiCharger DC Fast 60 kW (UF060A3001)\\480 V 3F, 3P + PE (sin neutro); 91 A máx., 83 A nom.; fp $\ge$ 0,98\\Salida 150--950 V CC; CCS1 (200 A) + CHAdeMO (125 A)\\UL 2202, UL 2231-1/-2; IMD, protección de falla a tierra, SPD\\SCCR $\ge$ 65 kA; NEMA 3R, IK10; OCPP 1.6J; paro de emergencia};
+\draw[w,dcc,->] (DC1.east) -- ++(6,4) node[cab,anchor=west]{CCS1 $\rightarrow$ P5};
+\draw[w,dcc,->] (DC1.east) -- ++(6,-4) node[cab,anchor=west]{CHAdeMO $\rightarrow$ P6};
+
+% ---------------- T-VE y TD-AC
+\node[cb] (CBT) at (152,205) {3P 70 A};
+\draw[w480] (138,205) -- (CBT.west);
+\draw[w480] (CBT.east) -- (178,205);
+\node[cab,anchor=south west] at (157.5,206) {3\#4 + EGC\#8, 3 m};
+\node[eq,draw=orange!80!black,minimum width=22mm,minimum height=14mm] (TVE) at (190,205) {\textbf{T-VE}\\seco 45 kVA\\480$\Delta$ -- 208Y/120 V\\$Z$ 4,5 \% (S), NEMA 3R\\54,1 A / 124,9 A};
+\draw[w] (TVE.east) -- (226,205);
+\node[cab,anchor=south west] at (202,206) {3\#1 + N\#1 + EGC\#6};
+\node[cab,anchor=north west] at (202,204) {$\le$ 3 m (240.21(C)(2))};
+\draw[gnd] (190,197.9) -- (190,190);
+\simtierra{(190,190)}
+\node[cab,anchor=north] at (190,186) {SDS: puente N--T y GEC \#6\\al mismo electrodo (250.30)};
+\node[cb] (MBAC) at (231,205) {PRINC.\\125 A 3P};
+\draw[w] (MBAC.east) -- (240,205);
+\draw[line width=2pt,ac] (240,228) -- (240,96);
+\node[eq,draw=ac,minimum width=27mm,anchor=south] at (240,229) {\textbf{TD-AC} -- QO 208Y/120 V\\125 A, 24 esp., NEMA 3R, 10 kA\\$I_{cc}$ $\le$ 2,8 kA; fase mayor 98,3 A};
+\node[cb] (SPD2) at (228,190) {SPD\\tipo 2};
+\draw[w] (SPD2.east) -- (240,190);
+
+% ramales CA
+\foreach \y/\n/\b/\c/\cond/\dv/\eq/\col in {
+  220/AC-1/2P 50 A/A-B/{2\#6 + EGC\#10, PVC 1'', 18 m}/{1,12}/{\textbf{AC-1} Autel MaxiCharger AC Elite 50A (MC50AHS)\\ajustado a 40 A $\rightarrow$ 8,3 kW a 208 V; J1772, cable 7,5 m\\UL 2594, UL 2231-1/-2; CCID 20 mA; NEMA 4 $\rightarrow$ P1 (accesible)}/ac,
+  197/AC-2/2P 50 A/B-C/{2\#6 + EGC\#10, PVC 1'', 18 m}/{1,12}/{\textbf{AC-2} Autel MaxiCharger AC Elite 50A (MC50AHS)\\ajustado a 40 A $\rightarrow$ 8,3 kW a 208 V; J1772, cable 7,5 m\\UL 2594, UL 2231-1/-2; CCID 20 mA; NEMA 4 $\rightarrow$ P2}/ac}{
+  \node[cb] (B\n) at (252,\y) {\b\\\c};
+  \draw[w] (240,\y) -- (B\n.west);
+  \draw[w,\col] (B\n.east) -- (300,\y);
+  \node[cab,anchor=south west] at (258,\y+0.6) {\cond};
+  \node[cab,anchor=north west] at (258,\y-0.6) {$\Delta V$ \dv~\% (total 2,79 \%)};
+  \node[eq,draw=\col,minimum width=56mm,anchor=west] at (300,\y) {\eq};
+}
+\foreach \y/\n/\c/\eq in {
+  172/AC-3/C-A/{\textbf{AC-3} cargador CA GB/T (MDAC 132EN K), 32 A\\$\rightarrow$ 6,7 kW a 208 V; GB/T 20234, IEC 61851; IP54, OCPP 1.6\\Sin listado UL: RCD tipo B aguas arriba $\rightarrow$ P3},
+  149/AC-4/A-B/{\textbf{AC-4} cargador CA GB/T (MDAC 132EN K), 32 A\\$\rightarrow$ 6,7 kW a 208 V; GB/T 20234, IEC 61851; IP54, OCPP 1.6\\Sin listado UL: RCD tipo B aguas arriba $\rightarrow$ P4}}{
+  \node[cb] (B\n) at (252,\y) {2P 40 A\\\c};
+  \draw[w] (240,\y) -- (B\n.west);
+  \node[cb,draw=gbt] (R\n) at (268,\y) {RCD B\\30 mA};
+  \draw[w] (B\n.east) -- (R\n.west);
+  \draw[w,gbt] (R\n.east) -- (300,\y);
+  \node[cab,anchor=south west] at (274,\y+0.6) {2\#8 + EGC\#10, 13 m};
+  \node[cab,anchor=north west] at (274,\y-0.6) {$\Delta V$ 1,02 \% (total 2,69 \%)};
+  \node[eq,draw=gbt,minimum width=56mm,anchor=west] at (300,\y) {\eq};
+}
+\node[cb] (BAUX) at (252,127) {1P 20 A\\C};
+\draw[w] (240,127) -- (BAUX.west); \draw[w] (BAUX.east) -- (300,127);
+\node[eq,minimum width=56mm,anchor=west] (AUX) at (300,127) {Tomacorriente GFCI de mantenimiento, controlador EMS,\\router 4G (OCPP) y control: 1 kVA (S)};
+\node[cb,dashed] (BRES) at (252,108) {2 $\times$ 2P\\reserva};
+\draw[w,dashed] (240,108) -- (BRES.west);
+\node[cab,anchor=west] at (258,108) {previsto para AC-5/AC-6 (ampliación a 45 kVA de T-VE)};
+
+% alumbrado y reserva en TD-VE
+\node[cb] (BIL) at (152,150) {1P 20 A\\277 V};
+\draw[w480] (138,150) -- (BIL.west); \draw[w] (BIL.east) -- (170,150);
+\node[eq,anchor=west,minimum width=30mm] at (170,150) {L-1, L-2: LED 150 W\\277 V, 2\#12 + EGC\#12};
+\node[cb,dashed] (BR3) at (152,128) {3P\\reserva};
+\draw[w480,dashed] (138,128) -- (BR3.west);
+\node[cab,anchor=west] at (158,128) {ampliación (2.\textsuperscript{o} cargador CC)};
+
+% EMS y comunicaciones
+\node[eq,draw=blue!60!black,minimum width=40mm] (EMS) at (190,170) {\textbf{EMS} (NEC 625.42): limita la estación\\a 60 kW medidos en AL-VE vía OCPP\\(reduce DC-1 y AC-1..AC-4)};
+\draw[com] (112.2,170) -- (EMS.west);
+\draw[com] (EMS.east) -- (228,170) -- (228,127) -- (AUX.west);
+\draw[com] (EMS.north) -- (190,180) -- (215,180) -- (215,248) -- (DC1.west |- 0,241) -- (300,241);
+
+% ---------------- LEYENDA
+\node[anchor=north west,font=\fontsize{9}{11}\selectfont\bfseries] at (15,92) {LEYENDA Y NOTAS};
+\begin{scope}[shift={(15,82)},font=\fontsize{5.6}{6.8}\selectfont]
+\draw[w480] (0,0) -- (10,0); \node[anchor=west] at (12,0) {480Y/277 V nuevo};
+\draw[w] (0,-5) -- (10,-5); \node[anchor=west] at (12,-5) {208Y/120 V nuevo};
+\draw[w,gray!70!black,dashed] (0,-10) -- (10,-10); \node[anchor=west] at (12,-10) {Existente};
+\draw[gnd] (0,-15) -- (10,-15); \node[anchor=west] at (12,-15) {Puesta a tierra};
+\draw[com] (0,-20) -- (10,-20); \node[anchor=west] at (12,-20) {Medición, EMS, OCPP, EPO};
+\node[cb] at (5,-26) {In\\polos}; \node[anchor=west] at (12,-26) {Interruptor termomagnético};
+\node[cb,draw=gbt] at (5,-33) {RCD B}; \node[anchor=west] at (12,-33) {Diferencial tipo B 30 mA};
+\end{scope}
+\node[anchor=north west,font=\fontsize{5.6}{6.9}\selectfont,align=left,text width=172mm] at (68,86) {%
+1. Conductores Cu THWN-2, 90 °C, ampacidad tomada a 75 °C (110.14(C)), corregida por 31--35 °C (0,96) y por 4 conductores portadores en el mismo tubo (0,80). Memoria: \texttt{calc/electrico.py}.\\
+2. Cargas de los EVSE como continuas al 125 \% de su corriente máxima (NEC 625.41, 625.42); un circuito individual por cargador (625.40).\\
+3. DC-1 opera a 480 V $>$ 150 V a tierra: su interruptor es el medio de desconexión y es bloqueable en abierto (625.43). AC-1..AC-4 a 208 V se bloquean igual por mantenimiento.\\
+4. La protección del personal la dan los equipos: CCID de 20 mA (UL 2231) en AC-1/AC-2 e IMD en DC-1. AC-3/AC-4 (IEC 61851-1, sin listado UL) llevan un diferencial tipo B de 30 mA aguas arriba (IEC 60364-7-722).\\
+5. T-VE es un sistema derivado separadamente: puente N--T en T-VE y GEC al electrodo de la estación (250.30). En TD-VE el neutro está aislado de la envolvente (250.32(B)(1)).\\
+6. Capacidades interruptivas $\ge$ corriente de falla disponible (110.9, 110.10): IP-VE 35 kA $>$ 15,7 kA; TD-VE 14 kA $>$ 5,8 kA; TD-AC 10 kA $>$ 2,8 kA. Rótulo de la corriente de falla en TD-VE (110.24).\\
+7. EMS con TC en AL-VE: sin gestión la demanda llega a 94,5 kW; con ella la estación no pasa de 60 kW (ver memoria económica). El ICE debe confirmar la capacidad del transformador 119688 (S).};
+\cajetin{VE-02}{Diagrama unifilar: suministro, medición, protecciones, conductores,}{medios de desconexión, puesta a tierra y cargadores}{Sin escala}{3 de 4}
+\end{tikzpicture}
+\end{document}

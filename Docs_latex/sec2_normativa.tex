@@ -1,0 +1,200 @@
+% =====================================================================
+\section{Marco normativo y requisitos de instalación en Costa Rica}
+\label{sec:normativa}
+Esta sección identifica los requisitos que aplican a una estación de carga de uso público en un inmueble institucional y explica el efecto de cada uno sobre el diseño. La edición y vigencia de cada documento se resumen en el Cuadro~\ref{tab:vigencia}.
+
+\subsection{Ley N.\textsuperscript{o} 9518, sus reformas y su reglamento}
+\label{sec:ley9518}
+La \emph{Ley de Incentivos y Promoción para el Transporte Eléctrico}, N.\textsuperscript{o} 9518 (25 de enero de 2018, vigente desde su publicación el 6 de febrero de 2018) \cite{ley9518,dec41428}, tiene dos reformas de interés:
+\begin{itemize}
+\item \textbf{Ley N.\textsuperscript{o} 10209 (2022), \emph{Incentivos para el transporte verde}.} Reformó los artículos 8, 9, 10 y 12 del capítulo~III (incentivos fiscales) y derogó el artículo 34 \cite{ley10209}. No cambia los requisitos de la infraestructura de carga.
+\item \textbf{Ley N.\textsuperscript{o} 10937 (2026).} Fue publicada en el Alcance N.\textsuperscript{o} 70 a La Gaceta N.\textsuperscript{o} 103 del 5 de junio de 2026 y reformó los artículos 31 y 32 \cite{larepublica10937,bufete10937}. Es la reforma que más afecta el proyecto:
+  \begin{itemize}
+  \item \textbf{Art. 31:} autoriza a \emph{toda persona física o jurídica, pública o privada}, a instalar, desarrollar y operar centros de recarga y a vender el servicio, lo que elimina la exclusividad de las distribuidoras. Las condiciones son cumplir la normativa técnica que emita el MINAE, consultar previamente al ICE, responder por la seguridad de los equipos y contar con una \emph{póliza de responsabilidad civil}. Las distribuidoras mantienen la obligación de construir la red básica: al menos un centro cada 80~km en rutas nacionales y cada 120~km en rutas cantonales.
+  \item \textbf{Art. 32:} declara la venta de recarga \emph{servicio de interés general} (Ley 10086). ARESEP debe fijar la tarifa de la energía que las distribuidoras cobran a los operadores y fiscalizar la calidad. Se crea un canon del 0,05\,\% sobre el precio final de cada recarga.
+  \item \textbf{Transitorios:} el Poder Ejecutivo tiene seis meses para emitir o actualizar el reglamento (hasta diciembre de 2026). Mientras ARESEP no fije las tarifas, la distribuidora cobra a los operadores la tarifa de comercios, servicios e industrias. El plazo de ARESEP difiere entre las fuentes consultadas (seis o doce meses) y debe confirmarse en La Gaceta. El canon se cobra a partir del año siguiente a la vigencia del reglamento.
+  \end{itemize}
+\end{itemize}
+
+\textbf{Reglamento.} El \emph{Reglamento de Incentivos para el Transporte Eléctrico} (Decreto 41092-MINAE-H-MOPT, La Gaceta N.\textsuperscript{o} 92 del 25 de mayo de 2018) fue modificado por el Decreto 41428-H-MINAE-MOPT (2018). Este define los \emph{centros de recarga}, ``lentos, semirrápidos y rápidos'', y establece que su funcionamiento se rige por INTE/IEC 61851-1 (requisitos generales), INTE/IEC 61851-22 (estación de CA) e INTE/IEC 61851-23 (estación de CC) \cite{dec41428}. Esa remisión hace que la serie 61851 deje de ser solo una referencia voluntaria para los centros de recarga.
+
+\textbf{Efectos sobre el diseño:}
+\begin{enumerate}[label=(\alph*)]
+\item La UTN puede operar la estación. Si cobra por la energía, presta un servicio de interés general: necesita medición por sesión (OCPP y medidor de cada EVSE), una póliza de responsabilidad civil (incluida en el costo de operación) y la consulta previa al ICE, que coincide con el trámite del servicio nuevo.
+\item Se usa un \textbf{servicio y un medidor propios} de la estación, separados del CAA. Eso permite aplicar la tarifa que corresponda (sección~\ref{sec:distribuidora}) y liquidar el canon.
+\item Los equipos se seleccionan de acuerdo con la serie IEC 61851 (Modo~3 y Modo~4). Como el reglamento técnico del MINAE todavía no se ha emitido, el diseño deberá revisarse cuando se publique.
+\end{enumerate}
+
+\subsection{Código Eléctrico de Costa Rica (NFPA 70, NEC 2020) y artículo 625}
+\label{sec:nec}
+El \emph{Reglamento de Oficialización del Código Eléctrico de Costa Rica para la Seguridad de la Vida y de la Propiedad} (RTCR 458:2011, Decreto 36979-MEIC, con las reformas 38440, 41505 y 43418-MEIC) oficializa la NFPA~70 ``en su última versión actualizada en español''. La edición vigente es el \textbf{NEC 2020}, según el aviso de La Gaceta N.\textsuperscript{o} 126 del 10 de julio de 2024. Es la misma base que se verificó en el Proyecto~2 \cite{rtcr458,gacetaNEC}. Aunque el MEIC divulgó en 2024 un texto de decreto sobre el Código \cite{meic2024}, no se confirmó que se publicara, por lo que se mantiene el NEC 2020.
+
+El RTCR 458 agrega tres obligaciones propias que afectan el proyecto:
+\begin{itemize}
+\item El diseño y la dirección técnica deben estar a cargo de un profesional incorporado al CFIA.
+\item Antes de la conexión, ese profesional firma una declaración jurada de que la instalación cumple el Código (art.~5.1.3). La distribuidora la exige para conectar.
+\item Cada material y equipo debe tener un proceso de evaluación de la conformidad (art.~5.3). Este último punto es decisivo para los cargadores GB/T, que tienen certificación IEC/GB pero no listado UL (sección~\ref{sec:seleccion}).
+\end{itemize}
+
+{\small
+\begin{longtable}{L{2.3cm}L{5.6cm}L{7.1cm}}
+\caption{Artículos del NEC 2020 aplicados y decisión de diseño que produjo cada uno.}\label{tab:nec}\\
+\toprule
+\textbf{Artículo} & \textbf{Requisito} & \textbf{Decisión de diseño}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Artículo} & \textbf{Requisito} & \textbf{Decisión de diseño}\\
+\midrule\endhead
+625.5, 110.3(B) & EVSE listados e instalados según su listado e instrucciones. & AC-1/AC-2 (UL 2594) y DC-1 (UL 2202) listados. AC-3/AC-4 (GB/T) sin listado UL: se justifican con la evaluación de la conformidad IEC/GB (RTCR 458, art. 5.3) y protección adicional (sección~\ref{sec:seleccion}).\\
+625.17(A)(3) & Cable de salida del EVSE $\le$ 7,5~m, salvo con sistema de gestión de cable. & Cables de 7,5~m (CA) y 4,6~m (CC) con soporte y gestor de cable (VE-03, D1).\\
+625.22 & Sistema de protección del personal integrado. & CCID de 20~mA en AC-1/AC-2 (UL 2231); IMD y protección contra falla a tierra en DC-1.\\
+625.40 & Cada EVSE en un circuito individual, sin otras salidas. & Un circuito por cargador (VE-02).\\
+625.41 & Protección contra sobrecorriente $\ge$ 125\,\% de la corriente máxima del EVSE (carga continua). & 2P 50~A (40~A), 2P 40~A (32~A), 3P 125~A (91~A).\\
+625.42 & La corriente nominal del EVSE define la carga; un EMS puede fijar una carga máxima menor. & Alimentador dimensionado sin descontar el EMS (criterio conservador). El EMS de 60~kW se usa para reducir la demanda facturada.\\
+625.43 & EVSE de más de 60~A o de más de 150~V a tierra: medio de desconexión accesible y bloqueable en abierto. & DC-1 (277~V a tierra): interruptor de 125~A bloqueable en TD-VE, a la vista del equipo.\\
+625.44 & Conexión fija o por cordón y enchufe según su capacidad. & Todos los equipos se conectan de forma fija (cableados).\\
+625.48 & Equipos interactivos (bidireccionales) listados para ese uso. & No se incluye V2G ni V2H (sección~\ref{sec:bidir}).\\
+625.50 & Ubicación del EVSE: montaje según su listado, conector a una altura adecuada. & Conectores entre 0,9 y 1,2~m; equipos exteriores NEMA 3R/4 o IP54.\\
+625.54 & Tomacorrientes con protección GFCI. & Tomacorriente de mantenimiento con GFCI en TD-AC.\\
+110.9, 110.10, 110.24 & Capacidad interruptiva y SCCR mayores que la corriente de falla disponible, la cual se rotula. & 15,7~kA en el nicho, 5,8~kA en TD-VE y 2,8~kA en TD-AC (sección~\ref{sec:cc}).\\
+110.26 & Espacio de trabajo frente a los tableros. & 1,10~m frente a TD-VE, T-VE y TD-AC ($\ge$ 1,07~m, condición~2, 151--600~V).\\
+215.2(A)(1), 215.3 & Alimentador con ampacidad y protección $\ge$ 125\,\% de la carga continua. & AL-VE de \#3/0 (200~A) y IP-VE de 200~A para 182,8~A.\\
+240.4(B), 240.6 & Protección de conductores y valores normalizados. & Interruptores de 40, 50, 70, 125 y 200~A.\\
+240.21(C)(2), 450.3(B) & Secundario del transformador $\le$ 3~m; protección del primario $\le$ 125\,\%. & T-VE: 70~A en el primario; principal de 125~A en TD-AC a menos de 3~m.\\
+250.30, 250.32, 250.53, 250.66, 250.122 & Sistema derivado separadamente, estructura alimentada por un alimentador, electrodos, GEC y EGC. & Puente N--T en T-VE; neutro aislado en TD-VE; dos varillas; GEC \#6; EGC según la Tabla 250.122.\\
+300.5, 352 & Profundidad de enterramiento y tubería de PVC. & 600~mm bajo el parqueo, PVC cédula~40 y cinta de advertencia.\\
+310.15, 310.16 & Ampacidad con corrección por temperatura y por agrupamiento. & Factores de 0,96 (31--35~°C) y 0,80 (4 conductores portadores).\\
+Cap. 9, Tablas 1, 4, 5 y 9 & Ocupación de tubos y reactancia de los conductores. & Ocupación $\le$ 40\,\%; caída de tensión con la impedancia eficaz.\\
+\bottomrule
+\end{longtable}}
+
+\subsection{Decreto Ejecutivo N.\textsuperscript{o} 41642-MINAE}
+El \emph{Reglamento para la construcción y el funcionamiento de la red de centros de recarga eléctrica para automóviles eléctricos por parte de las empresas distribuidoras de energía eléctrica} (Decreto 41642-MINAE, Alcance N.\textsuperscript{o} 161 a La Gaceta N.\textsuperscript{o} 128 del 9 de julio de 2019) \cite{aresep2019} regula:
+\begin{itemize}
+\item La construcción y operación de la \emph{red básica} de carga \emph{por parte de las distribuidoras} (ICE, CNFL, ESPH, JASEC y cooperativas).
+\item Una plataforma informática única de gestión y cobro.
+\item La tarifa que fija ARESEP. Primero fue de ₡182,72/kWh (RE-0056-IE-2019) y en 2023 pasó a ₡141 por minuto en la carga rápida \cite{aresep2019,aresep2023}.
+\end{itemize}
+
+\textbf{Alcance frente a este proyecto.} La estación de la UTN es una \emph{instalación privada}: no forma parte de la red básica ni la construye una distribuidora, así que el decreto no le aplica directamente. Se usa como referencia de interoperabilidad y de tarifas: los precios de la red pública son la referencia para el usuario (sección~\ref{sec:economia}), y los conectores de la red (CCS1, CHAdeMO y GB/T \cite{delfinoAresep}) orientan la selección. La Ley 10937 obliga al MINAE a actualizar la reglamentación, por lo que este decreto podría cambiar.
+
+\subsection{Normas técnicas nacionales: INTE N121, INTE N120 y series INTE/IEC 61851 y 62196}
+\begin{itemize}
+\item \textbf{INTE N121:2020, \emph{Infraestructura de centros de recarga para vehículos eléctricos}.} Fija requisitos mínimos para los modos 1 a 4 en cuanto a instalación eléctrica, tipos de conectores, seguridad, información y etiquetado, estacionamiento e iluminación \cite{intecoBlog}. Es una norma voluntaria, pero orienta los requisitos técnicos que el MINAE debe emitir. \emph{No se tuvo acceso a su texto}, porque es de pago. Por eso sus seis ejes se usaron como lista de verificación del diseño (Cuadro~\ref{tab:cumplimiento}), y los valores numéricos (iluminación, dimensiones) se marcan como supuestos que deben confirmarse con la norma \supuesto{}.
+\item \textbf{INTE N120:2020, \emph{Identificación de compatibilidad de vehículos e infraestructuras}.} Define identificadores gráficos armonizados (forma, color y letra) para que el usuario reconozca qué conector le sirve. Es equivalente en su objeto a la EN 17186 \cite{intecoBlog}. Se aplica en los rótulos de cada manguera (VE-03, D5).
+\item \textbf{INTE/IEC 61851-1:2019} (adopción de la IEC 61851-1:2017, tercera edición) da los requisitos generales del sistema conductivo de carga hasta 1000~V CA y 1500~V CC \cite{intecoBlog}. La red del ICE declara cumplir INTE-IEC 61851-1:2017 \cite{delfinoAresep}. El reglamento de la Ley 9518 cita además las partes \textbf{-22 (CA)} y \textbf{-23 (CC)} \cite{dec41428}. A nivel internacional, la IEC 61851-22 fue retirada e incorporada a la 61851-1:2017, así que hoy los requisitos de CA están en la parte~1 y los de CC en la parte~23.
+\item \textbf{Serie IEC 62196} (clavijas, tomacorrientes y conectores: Tipo~1, Tipo~2 y configuraciones CC AA a FF). No se encontró evidencia de su adopción como INTE en el catálogo público consultado, por lo que se usa como referencia internacional. Los equipos seleccionados la cumplen por medio de SAE J1772 y UL 2251 (CCS1 corresponde a la configuración EE).
+\end{itemize}
+\textbf{Carácter.} Las normas INTE son voluntarias salvo que un reglamento las haga obligatorias. Para los centros de recarga, el reglamento de la Ley 9518 sí remite a la serie 61851, por lo que su cumplimiento se trata como obligatorio. INTE N120 y N121 se aplican como buena práctica nacional y como evidencia de diligencia del profesional responsable.
+
+\subsection{Normas de producto, conectores, comunicación y certificaciones}
+Las normas de producto se eligieron según los equipos usados. Ninguna norma internacional se trata como obligatoria por sí misma: lo obligatorio es el listado o la evaluación de la conformidad que exige el RTCR 458.
+{\small
+\begin{longtable}{L{3.6cm}L{5.0cm}L{6.4cm}}
+\caption{Normas de producto y comunicación usadas para seleccionar y verificar los equipos.}\label{tab:normasprod}\\
+\toprule
+\textbf{Norma} & \textbf{Objeto} & \textbf{Aplicación en el diseño}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Norma} & \textbf{Objeto} & \textbf{Aplicación en el diseño}\\
+\midrule\endhead
+UL 2594 & EVSE de CA & Listado de AC-1/AC-2 \cite{autelAC}\\
+UL 2202 & Equipos de carga en CC & Listado de DC-1 \cite{autelDC}\\
+UL 2231-1/-2 & Sistemas de protección del personal & CCID 20~mA (CA) y monitoreo de aislamiento (CC)\\
+UL 2251 & Clavijas y conectores para VE & Conectores J1772, CCS1 y CHAdeMO de equipos listados\\
+SAE J1772 & Conector Tipo 1 (CA) y Combo 1 (CCS1), señal piloto & AC-1/AC-2 y DC-1\\
+CHAdeMO 1.2 (IEEE 2030.1.1) & Carga CC con comunicación CAN & DC-1 (Nissan Leaf y otros)\\
+GB/T 20234.2/.3, GB/T 18487.1, GB/T 27930 & Conector chino CA/CC y protocolo & AC-3/AC-4; la estación no tiene GB/T en CC \cite{mdac}\\
+SAE J3400 (NACS) & Conector norteamericano unificado & Vehículos Tesla mediante adaptador aprobado\\
+IEC 62196-2/-3 & Tipo 2 y CCS2 & Comparación (ABB Terra AC); no se instala \cite{abbTAC}\\
+IEC 61851-1/-23/-24 & Requisitos generales, estaciones CC y comunicación & Clasificación por modos; DC-1 y AC-3/AC-4\\
+ISO 15118-2/-20, DIN 70121 & Comunicación vehículo--estación (PLC), \emph{Plug \& Charge}, bidireccionalidad & DC-1 (ISO 15118, DIN 70121)\\
+OCPP 1.6J / 2.0.1 & Comunicación estación--sistema central & Gestión, EMS y medición por sesión en los 4 equipos\\
+UL 489, UL 67, UL 1561, UL 1449 & Interruptores, tableros, transformadores secos, SPD & IP-VE, TD-VE, TD-AC, T-VE y SPD\\
+IEC 60364-7-722 & Instalaciones de suministro a VE (IEC) & Diferencial tipo B de 30~mA para equipos IEC sin protección CC propia verificada (AC-3/AC-4)\\
+UL 9741, UL 1741 SB, IEEE 1547-2018 & Bidireccionalidad e interconexión & Requisitos para una ampliación V2G/V2H (sección~\ref{sec:bidir})\\
+\bottomrule
+\end{longtable}}
+
+\subsection{Requisitos de la instalación eléctrica}
+\label{sec:req_inst}
+\begin{itemize}
+\item \textbf{Circuitos dedicados y cargas continuas:} un circuito por EVSE (625.40) y ampacidad y protección al 125\,\% (625.41, 215.2). Se considera continua toda la carga de la estación (sección~\ref{sec:cond}).
+\item \textbf{Conductores y canalizaciones:} cobre THWN-2 (90~°C) con la ampacidad tomada en la columna de 75~°C por la temperatura de los terminales (110.14(C)), corrección por temperatura ambiente (0,96) y por agrupamiento (0,80). Tubería de PVC cédula~40 subterránea con ocupación $\le$ 40\,\%.
+\item \textbf{Sobrecorriente:} interruptores termomagnéticos UL 489 con capacidad interruptiva mayor que la corriente de falla disponible.
+\item \textbf{Falla a tierra y corrientes residuales:} el NEC no exige GFPE en un servicio de 200~A a 480Y/277~V (230.95 aplica desde 1000~A). La protección del personal la dan los EVSE listados (625.22). En los equipos IEC se agrega un diferencial tipo~B, porque una falla con componente continua puede cegar a un diferencial tipo~AC o~A (IEC 60364-7-722).
+\item \textbf{Puesta a tierra y equipotencialización:} EGC en cada circuito, electrodo propio de la estación (250.32), sistema derivado T-VE (250.30) y unión de pedestales, bolardos, luminarias y cerramiento.
+\item \textbf{Sobretensiones:} SPD tipo~1 en TD-VE y tipo~2 en TD-AC (UL 1449). El sitio tiene una densidad alta de rayos (supuesto de 15 rayos/km$^2$ por año, el mismo del Proyecto~2) y los equipos electrónicos de carga son sensibles.
+\item \textbf{Medios de desconexión:} IP-VE en el nicho (desconectador del servicio), principal de TD-VE con disparo en derivación (paro de emergencia), interruptor bloqueable de DC-1 (625.43) e interruptores de los ramales de CA.
+\end{itemize}
+
+\subsection{Empresa distribuidora (ICE) y disposiciones tarifarias de ARESEP}
+\label{sec:distribuidora}
+El sitio lo atiende el ICE desde el transformador de pedestal N.\textsuperscript{o} 119688 (lámina E01). Para una carga nueva de unos \SI{95}{\kilo\watt} se requiere:
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Solicitud de servicio nuevo o aumento de carga} ante el ICE, con el plano eléctrico firmado y registrado en el CFIA, la carga instalada (Cuadro~\ref{tab:cargas}) y la ubicación del medidor. La relación comercial y los plazos de conexión los regula la norma AR-NT-SUCOM de ARESEP \cite{aresepNorm}.
+\item \textbf{Estudio de capacidad:} el ICE debe confirmar que el transformador 119688 tiene capacidad remanente o, si no, definir el cambio de transformador o un transformador nuevo. El diseño supone al menos \SI{100}{\kilo\volt\ampere} disponibles \supuesto{} y reduce el riesgo con el EMS de \SI{60}{\kilo\watt}.
+\item \textbf{Medición:} un servicio de 200~A en 480~V lleva medición indirecta con transformadores de corriente, en el nicho junto al medidor existente del CAA. El ICE cotiza el equipo aparte \supuesto{}.
+\item \textbf{Acometida y conexión:} la conexión a los bornes secundarios del transformador la hace el ICE o la autoriza. Los conductores de la estación empiezan en IP-VE.
+\item \textbf{Calidad de la tensión:} AR-NT-SUCAL fija la regulación de la tensión de suministro. La red del ICE declara cumplirla \cite{delfinoAresep}. El diseño agrega como máximo 2,8\,\% de caída propia.
+\end{enumerate}
+
+\textbf{Tarifas aplicables (pliego del ICE 2026, sin impuestos) \cite{icePliego}.}
+\begin{itemize}
+\item \textbf{T-CO, comercios y servicios:} bloque binómico de más de 3000~kWh, con un cargo de energía de ₡59,67/kWh y un cargo por demanda de ₡9\,861,68/kW. Es la tarifa que la Ley 10937 ordena aplicar a los operadores que venden el servicio mientras ARESEP no fije la suya.
+\item \textbf{T-CS, preferencial de carácter social:} ₡50,72/kWh y ₡8\,382,41/kW. Aplica a las instituciones públicas de educación y, por tanto, a la UTN si opera la estación como servicio institucional sin venta.
+\item \textbf{Referencia para el usuario:} carga semirrápida pública del ICE a ₡99,70/kWh más IVA (junio de 2026) \cite{electrive2026} y carga rápida de la red nacional a ₡141 por minuto \cite{aresep2023}.
+\end{itemize}
+La consecuencia para el diseño es que el cargo por demanda pesa tanto como el de energía (sección~\ref{sec:economia}). Por eso se incluye el EMS, y la potencia en CC se limitó a \SI{60}{\kilo\watt}.
+
+\subsection{Trámites, responsabilidades profesionales, municipalidad, Bomberos y accesibilidad}
+\begin{itemize}
+\item \textbf{CFIA:} planos eléctricos y civiles firmados por profesionales incorporados, registrados en la plataforma APC, con contrato de consultoría y dirección técnica. Al terminar, la declaración jurada del RTCR 458 (art.~5.1.3) habilita la conexión del ICE. El responsable del diseño y de la dirección técnica responde por el cumplimiento del Código.
+\item \textbf{Municipalidad de Alajuela:} la zanja, las bases, el cerramiento y la demarcación son obra nueva en el inmueble. Su clasificación (permiso de construcción o trabajo menor) se confirma con Control Constructivo, con el visto bueno de la UTN como propietaria \cite{muniAlajuela}.
+\item \textbf{Cuerpo de Bomberos:} el RNPCI (Decreto 37615-MP) adopta varios códigos NFPA \cite{rnpci}. La estación no es un edificio, pero se prevén un acceso libre para el camión por la calle interna, paros de emergencia rotulados, un extintor junto a la celda eléctrica \supuesto{} y el protocolo de incendio de baterías (VE-03, D6). Debe consultarse a la Ingeniería de Bomberos si la obra requiere revisión.
+\item \textbf{Accesibilidad (Ley 7600):} el artículo 43 obliga a reservar el 5\,\% de los espacios de un estacionamiento para personas con discapacidad \cite{ley7600nota}. La estación destina el espacio P1, con franja de transferencia, ruta accesible y conectores a la altura de alcance. Las dimensiones adoptadas (3,30~m $\times$ 5,00~m) deben confirmarse con el reglamento de la Ley 7600 (Decreto 26831-MP) \supuesto{}.
+\item \textbf{Señalización y circulación:} espacios exclusivos para VE en carga con demarcación, rótulos INTE N120, señal vertical y tiempo máximo de permanencia. La estación no reduce el ancho de la calle interna (6,2~m) y la celda eléctrica queda fuera de la zona de rodamiento, protegida con bolardos.
+\end{itemize}
+
+\subsection{Montaje, protección ambiental, distancias, cables, iluminación, emergencia y mantenimiento}
+\begin{itemize}
+\item \textbf{Exterior:} equipos NEMA 3R/4 o IP54 o mejor, como mínimo. DC-1 es NEMA 3R e IK10; AC-1/AC-2, NEMA~4; AC-3/AC-4, IP54. La humedad y la lluvia del sitio (2069~mm por año) justifican bases 150~mm sobre la rasante y entrada de tubos por abajo con sello.
+\item \textbf{Corrosión:} ambiente urbano C2--C3 (ISO 9223) \supuesto{}: herrajes de acero inoxidable y gabinetes con pintura en polvo.
+\item \textbf{Impactos:} bolardos de acero rellenos de concreto y topes de rueda frente a cada equipo.
+\item \textbf{Distancias:} espacio de trabajo de 1,10~m (110.26) y 0,7~m libres frente a DC-1.
+\item \textbf{Manejo de cables:} cables de 7,5~m o menos con gestor de cable (625.17) para que no queden en el piso. Los espacios son más anchos (2,6--2,8~m) para abrir puertas con el cable conectado.
+\item \textbf{Iluminación:} dos postes LED (criterio de 50~lx \supuesto{}, por confirmar con INTE N121).
+\item \textbf{Emergencia:} dos botones EPO, procedimiento rotulado y extintor.
+\item \textbf{Mantenimiento:} plan preventivo y contrato con el representante (VE-03, D6).
+\end{itemize}
+
+\subsection{Funciones bidireccionales, generación fotovoltaica y almacenamiento}
+\label{sec:bidir}
+La propuesta \textbf{no} incluye V2H, V2B, V2G, generación FV ni almacenamiento. Si se agregaran, los requisitos adicionales serían los siguientes:
+\begin{itemize}
+\item \textbf{Interconexión:} Ley 10086 y su reglamento (Decreto 43879-MINAE), instructivo DC-03-IT-21-001 del ICE con inversor certificado UL 1741 SB / IEEE 1547-2018 e informe de verificación ICE-LEE o ECA, categoría B y modos volt-var, y contrato de interconexión \cite{ley10086,iceIT}.
+\item \textbf{Protección anti-isla y aislamiento de la red:} cese de la inyección en 2~s o menos (IEEE 1547). En V2H/V2B, un medio de transferencia que separe la carga de la red antes de energizarla (NEC 702, 625.48 y 705).
+\item \textbf{Almacenamiento:} UL 9540 y UL 9540A y distancias según NFPA 855.
+\end{itemize}
+Hoy no es viable por tres razones: no existe en el país un programa V2G de las distribuidoras, no se identificaron EVSE bidireccionales certificados de venta local y los vehículos con bidireccionalidad documentada son pocos. La batería estacionaria para recortar picos sí es una ampliación razonable (sección~\ref{sec:ampliacion}).
+
+\subsection{Verificación de edición y vigencia}
+\begin{table}[H]
+\centering\small
+\caption{Vigencia de los documentos nacionales usados (consulta: 1 de noviembre de 2026).}\label{tab:vigencia}
+\begin{tabularx}{\textwidth}{L{5.0cm}L{3.4cm}Y}
+\toprule
+\textbf{Documento} & \textbf{Edición o versión} & \textbf{Estado y carácter}\\
+\midrule
+Ley 9518 & 2018; reformas 10209 (2022) y 10937 (2026) & Vigente. La Ley 10937 rige desde el 5 jun 2026; su reglamento está pendiente (plazo a dic 2026).\\
+Decreto 41092-MINAE-H-MOPT & 2018, reformado por 41428-H-MINAE-MOPT & Vigente; remite a INTE/IEC 61851-1, -22 y -23.\\
+Decreto 41642-MINAE & 2019 & Vigente; aplica a la red de las distribuidoras, no a esta instalación.\\
+RTCR 458:2011 (Decreto 36979-MEIC) & NEC 2020 (Gaceta 126, 2024) & Vigente y obligatorio.\\
+INTE N121 / INTE N120 & 2020 & Voluntarias; no se tuvo acceso al texto (de pago).\\
+INTE/IEC 61851-1 & 2019 (IEC 61851-1:2017) & Referida por el reglamento de la Ley 9518.\\
+Pliego tarifario del ICE & 2026 & Rige del 1 ene al 31 dic 2026; ajuste extraordinario archivado (26 ago 2026).\\
+Ley 7600 y reglamento (26831-MP) & 1996 / 1998, con reformas & Vigente y obligatoria (art. 43, estacionamientos).\\
+RNPCI (Decreto 37615-MP) & Reforma 43733 & Vigente.\\
+\bottomrule
+\end{tabularx}
+\end{table}

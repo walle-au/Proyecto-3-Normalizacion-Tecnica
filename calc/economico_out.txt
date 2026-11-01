@@ -1,0 +1,72 @@
+==========================================================================================
+PRESUPUESTO REFERENCIAL (USD, sin IVA)
+==========================================================================================
+DC-1    Autel MaxiCharger DC Fast 60 kW UL, CCS1 + CHAdeMO (UF060A3001)              1 u       28,000     28,000  S
+AC-1/2  Autel MaxiCharger AC Elite 50 A cableado, J1772 7,5 m (MC50AHS)              2 u          639      1,278  Autel
+AC-3/4  Cargador CA GB/T 7 kW 32 A, IP54, OCPP 1.6 (MDAC 132EN K)                    2 u          650      1,300  S
+PED     Pedestal metálico doble para cargadores de CA, con soporte de cable          2 u          450        900  S
+RCD-B   Interruptor diferencial tipo B 2P 40 A 30 mA (para AC-3/AC-4)                2 u          280        560  S
+T-VE    Transformador seco 45 kVA 480D-208Y/120 V, NEMA 3R (Square D EE45T3H)        1 u        5,200      5,200  S
+IP-VE   Interruptor 3P 200 A 480 V >= 35 kA (PowerPact JGL36200) en gabinete N       1 u        2,600      2,600  S
+TD-VE   Tablero 480Y/277 V 225 A, principal 200 A con disparo en derivación, N       1 u        4,800      4,800  S
+INT-480 Interruptores en TD-VE: 3P 125 A, 3P 70 A, 1P 20 A 277 V                     1 lote     1,620      1,620  S
+TD-AC   Tablero QO 208Y/120 V 125 A, 24 espacios, NEMA 3R, con interruptores         1 u        1,000      1,000  S
+SPD     Supresores tipo 1 (480Y/277 V) y tipo 2 (208Y/120 V), UL 1449                1 lote     1,300      1,300  S
+EPO     Botón de paro de emergencia tipo hongo con rótulo, cableado al disparo       2 u          250        500  S
+C-3/0   Conductor Cu THWN-2 3/0 AWG (3 fases x 126 m)                              378 m           14      5,292  S
+C-4/6   Conductor Cu THWN-2 #4 (neutro) y #6 verde (EGC), 126 m c/u                252 m            4        958  S
+C-RAM   Conductores de circuitos derivados (#1, #4, #6, #8, #10, #12)                1 lote       950        950  S
+PVC-3   Tubería PVC cédula 40 de 3" (alimentador + reserva), 2 x 126 m             252 m            6      1,638  S
+PVC-R   Tubería PVC cédula 40 de 3/4" a 1-1/2" y accesorios                          1 lote       650        650  S
+ZANJA   Zanja 0,6 m: corte y reposición de asfalto, excavación, relleno, cinta     125 m           45      5,625  S
+REG     Registros eléctricos de concreto 60 x 60 cm con tapa de tránsito             5 u          350      1,750  S
+BASES   Bases de concreto (DC-1, celda eléctrica, pedestales) y anclajes             1 lote     2,500      2,500  S
+BOL     Bolardos de acero Ø 150 mm rellenos de concreto, h = 1,0 m                  10 u          180      1,800  S
+TOPE    Topes de rueda de concreto                                                   6 u           60        360  S
+LUM     Poste de 6 m con luminaria LED de 150 W, 277 V                               2 u        1,400      2,800  S
+PAT     Puesta a tierra: 2 varillas Cu 16 mm x 2,4 m, #4 desnudo, soldadura ex       1 lote       600        600  S
+SEÑAL   Demarcación, rótulos INTE N120, señal vertical, Ley 7600 y rótulos NEC       1 lote     1,200      1,200  S
+MED     Medición indirecta del ICE (TC + medidor) y aporte por conexión              1 lote     2,500      2,500  S
+MO      Mano de obra de instalación eléctrica y obra civil menor                     1 lote     9,000      9,000  S
+PEM     Puesta en marcha, configuración OCPP, módem 4G y capacitación                1 lote     1,500      1,500  S
+ING     Diseño, planos, visado CFIA, dirección técnica y permisos                    1 lote     5,000      5,000  S
+        Subtotal                                                                                          93,181
+        Imprevistos 10 %                                                                                   9,318
+        TOTAL                                                                                            102,499  (= 51.8 millones de colones)
+  Equipos principales: 45,078 USD (44 % del total)
+
+==========================================================================================
+COSTO DE OPERACIÓN ANUAL (escenario de uso de carga.py)
+==========================================================================================
+  Energía anual: 162.8 MWh (CA 81.5, CC 81.3); minutos de CC por año: 85,681
+  Demanda máxima mensual sin gestión: 94.5 kW; con gestión de carga: 60 kW
+  O&M: 3,300 USD/año = 1.67 M CRC/año
+  T-CO (comercios y servicios)             sin EMS       : energía   9.71 M + demanda  11.18 M + O&M 1.67 M =  22.56 M CRC/año ->  138.6 CRC/kWh (demanda = 54 % de la factura)
+  T-CO (comercios y servicios)             con EMS 60 kW : energía   9.71 M + demanda   7.10 M + O&M 1.67 M =  18.48 M CRC/año ->  113.5 CRC/kWh (demanda = 42 % de la factura)
+  T-CS (preferencial, educación pública)   sin EMS       : energía   8.25 M + demanda   9.50 M + O&M 1.67 M =  19.42 M CRC/año ->  119.3 CRC/kWh (demanda = 54 % de la factura)
+  T-CS (preferencial, educación pública)   con EMS 60 kW : energía   8.25 M + demanda   6.04 M + O&M 1.67 M =  15.96 M CRC/año ->   98.0 CRC/kWh (demanda = 42 % de la factura)
+
+==========================================================================================
+INGRESOS DE REFERENCIA Y RETORNO SIMPLE (si se vende el servicio, Ley 10937)
+==========================================================================================
+  Ingreso con precios de referencia del ICE (CA 99.7 CRC/kWh; CC 141.0 CRC/min): 20.20 M CRC/año
+  T-CO (comercios y servicios)             sin EMS       : flujo neto  -2.35 M CRC/año -> retorno simple   inf años
+  T-CO (comercios y servicios)             con EMS 60 kW : flujo neto   1.73 M CRC/año -> retorno simple  30.0 años
+  T-CS (preferencial, educación pública)   sin EMS       : flujo neto   0.78 M CRC/año -> retorno simple  66.3 años
+  T-CS (preferencial, educación pública)   con EMS 60 kW : flujo neto   4.25 M CRC/año -> retorno simple  12.2 años
+  Precio medio de equilibrio (10 años, 8 %), T-CO  sin EMS       :  186.0 CRC/kWh
+  Precio medio de equilibrio (10 años, 8 %), T-CO  con EMS 60 kW :  160.9 CRC/kWh
+  Precio medio de equilibrio (10 años, 8 %), T-CS  sin EMS       :  166.7 CRC/kWh
+  Precio medio de equilibrio (10 años, 8 %), T-CS  con EMS 60 kW :  145.4 CRC/kWh
+
+  Sensibilidad: uso al 50 % del escenario (la demanda máxima no cambia)
+  T-CO  sin EMS       : costo  217.5 CRC/kWh; flujo  -7.60 M CRC/año; retorno   inf años
+  T-CO  con EMS 60 kW : costo  167.4 CRC/kWh; flujo  -3.52 M CRC/año; retorno   inf años
+  T-CS  sin EMS       : costo  188.0 CRC/kWh; flujo  -5.19 M CRC/año; retorno   inf años
+  T-CS  con EMS 60 kW : costo  145.4 CRC/kWh; flujo  -1.73 M CRC/año; retorno   inf años
+
+==========================================================================================
+ESCENARIO POR FASES: FASE 1 SOLO CA (infraestructura completa, sin DC-1)
+==========================================================================================
+  T-CO (comercios y servicios)            : CAPEX 71,699 USD; energía 81.5 MWh; demanda 31.3 kW; costo  116.2 CRC/kWh; flujo -1.35 M CRC/año; retorno   inf años
+  T-CS (preferencial, educación pública)  : CAPEX 71,699 USD; energía 81.5 MWh; demanda 31.3 kW; costo  100.5 CRC/kWh; flujo -0.06 M CRC/año; retorno   inf años

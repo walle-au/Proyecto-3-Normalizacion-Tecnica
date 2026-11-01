@@ -1,0 +1,164 @@
+% =====================================================================
+\section{Análisis de la propuesta y de su viabilidad}
+\label{sec:analisis}
+
+\subsection{Por qué esta modalidad, estos equipos y esta potencia}
+\begin{itemize}
+\item \textbf{Modalidad mixta (CA + CC).} En un campus la mayoría de los usuarios estacionan de 4 a 9~horas. En ese tiempo, 6,6 a 8,3~kW alcanzan para recuperar del 20 al 80\,\% de casi cualquier automóvil o SUV (4 a 6~h, Cuadro~\ref{tab:tiempos}). La carga en CA es la de menor costo por punto (unos USD~900--1200 por punto en equipos, frente a USD~28\,000 de DC-1) y la de menor demanda. DC-1 atiende a visitantes, pickups de batería grande y usuarios con urgencia, y es el único medio de carga rápida para CHAdeMO en la zona.
+\item \textbf{60~kW y no 120~kW.} Con 60~kW, un vehículo pasa del 20 al 80\,\% en 40--80~min. La corriente (91~A) cabe en un alimentador de 200~A desde el transformador existente. Un ABB Terra 124 de 120~kW tomaría 153~A, exigiría un servicio de 250~A o más y duplicaría el cargo por demanda, para un ahorro de tiempo que en un campus no es crítico.
+\item \textbf{Conectores.} Se cubren los cuatro grupos de la flota real: J1772/CCS1, CHAdeMO, GB/T y NACS con adaptador aprobado. Esto se decidió a partir de la verificación por versión y mercado (sección~\ref{sec:compat}), no de la forma del conector.
+\end{itemize}
+
+\subsection{Ventajas y limitaciones frente a otras alternativas; estación residencial frente a pública}
+{\small
+\begin{longtable}{L{3.2cm}L{5.6cm}L{6.2cm}}
+\caption{Ventajas y limitaciones de la propuesta frente a otras alternativas.}\label{tab:ventajas}\\
+\toprule
+\textbf{Alternativa} & \textbf{Ventaja de la propuesta} & \textbf{Limitación de la propuesta}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Alternativa} & \textbf{Ventaja} & \textbf{Limitación}\\
+\midrule\endhead
+Solo CA (Nivel 2) & Atiende pickups, visitantes y CHAdeMO en menos de 1~h & Más inversión (DC-1 es el 30\,\% del presupuesto) y cargo por demanda\\
+Solo CC rápida & Atiende a muchos usuarios que permanecen varias horas, a bajo costo, y a la flota GB/T & --\\
+Tomacorrientes de 120~V (Modo 2) & 4 a 6 veces más potencia; autenticación, medición y protección propia & Costo de los EVSE\\
+Cargadores de pared domésticos sin red & Gestión, cobro y EMS por OCPP & Requiere conectividad y plataforma\\
+CC de 120--180~kW & Menor demanda y alimentador existente suficiente & Más tiempo para las baterías grandes\\
+Cargador CC con GB/T (IEC, 400~V) & Equipo listado UL a 480~V sin transformador & Los GB/T solo cargan en CA dentro de la estación\\
+V2G/FV/almacenamiento & Menor complejidad regulatoria y de costo & No aprovecha FV ni reduce la demanda con una batería\\
+\bottomrule
+\end{longtable}}
+
+\textbf{Estación residencial frente a pública.}
+\begin{itemize}
+\item \textbf{Residencial:} un solo usuario y un solo vehículo. Basta un wallbox de 7--10~kW en un circuito de 240~V del servicio monofásico, se mide con el medidor de la casa (tarifa residencial), no hay autenticación, cobro ni accesibilidad, y el trámite es el de una ampliación de la instalación interna.
+\item \textbf{Pública:} multiusuario y flota mixta. Exige varios conectores, autenticación, medición por sesión, un EMS, servicio trifásico (208 o 480~V), medición propia, accesibilidad (Ley 7600), señalización, protección contra impactos, paros de emergencia y alumbrado. Si se vende la energía, entran la Ley 10937 y ARESEP (póliza, canon y tarifa). Por eso el costo por punto es mucho mayor.
+\end{itemize}
+
+\subsection{Cómo se aplicaron las normas en el diseño}
+\begin{table}[H]
+\centering\small
+\caption{Matriz de cumplimiento: requisito, medida de diseño y evidencia.}\label{tab:cumplimiento}
+\begin{tabularx}{\textwidth}{L{4.0cm}YL{2.6cm}}
+\toprule
+\textbf{Requisito (fuente)} & \textbf{Medida aplicada} & \textbf{Evidencia}\\
+\midrule
+Ley 9518 / Ley 10937 (art. 31--32) & Servicio y medidor propios, medición por sesión (OCPP), póliza de responsabilidad civil y consulta previa al ICE & Secc.~\ref{sec:ley9518}, VE-02\\
+Reglamento de la Ley 9518: INTE/IEC 61851 & Equipos Modo 3 y Modo 4 conformes con la serie 61851 & Cuadro~\ref{tab:cargadores}\\
+RTCR 458 / NEC 625 & Circuitos individuales, 125\,\%, desconexión bloqueable, CCID/IMD, cable de 7,5~m o menos & Cuadro~\ref{tab:nec}, VE-02\\
+RTCR 458 art. 5.3 & Listado UL o certificado IEC/GB evaluado, más RCD tipo B & Secc.~\ref{sec:seleccion}\\
+NEC 110.9/110.10/110.24 & Capacidades interruptivas mayores que la $I_{cc}$, rotuladas & Secc.~\ref{sec:cc}\\
+NEC 110.26 & 1,10~m frente a los tableros & VE-01\\
+NEC 250 & Electrodo propio, sistema derivado, EGC y uniones & VE-02, VE-03 D4\\
+NEC 300.5 & Tubería a 600~mm con cinta de advertencia & VE-03 D2\\
+INTE N121 (instalación, conectores, seguridad, información, estacionamiento, iluminación) & Los seis ejes cubiertos; valores numéricos por confirmar & VE-01, VE-03\\
+INTE N120 & Identificador de compatibilidad en cada manguera & VE-03 D5\\
+ICE / ARESEP & Solicitud de servicio, estudio de capacidad, medición indirecta, tarifa T-CO o T-CS & Secc.~\ref{sec:distribuidora}\\
+Ley 7600 & Espacio accesible con franja, ruta accesible, alcance de 0,9--1,2~m & VE-01, VE-03 D1\\
+RNPCI / Bomberos & EPO, extintor, acceso del camión, protocolo de baterías & VE-03 D6\\
+CFIA / Municipalidad & Planos firmados (APC), dirección técnica, declaración jurada, permiso municipal & Secc.~\ref{sec:tramites}\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Viabilidad técnica, económica, de operación y de expansión}
+\label{sec:viabilidad}
+\begin{itemize}
+\item \textbf{Técnica: viable.}
+  \begin{itemize}
+  \item Todos los equipos se pueden conseguir en el mercado.
+  \item Los cálculos cumplen con margen: alimentador al 91\,\% de su ampacidad, caídas de 2,8\,\% o menos y capacidades interruptivas con 2 a 3,5 veces de margen.
+  \item La condición crítica externa es la capacidad del transformador 119688, que debe confirmar el ICE. Con el EMS se puede adaptar a una capacidad menor.
+  \end{itemize}
+\item \textbf{Costo inicial:} USD~102\,500, de los cuales el 44\,\% son equipos principales y el resto obra civil, alimentador, mano de obra e ingeniería. El alimentador de 120~m y la zanja suman unos USD~13\,500. Ubicar la estación más cerca del transformador lo reduciría, pero no hay parqueo junto al nicho.
+\item \textbf{Operación:} entre ₡98 y ₡139 por kWh, según la tarifa y el uso del EMS (Cuadro~\ref{tab:operacion}).
+\item \textbf{Retorno simple, vendiendo a los precios de la red pública:}
+  \begin{itemize}
+  \item T-CS con EMS: unos 12 años; precio de equilibrio de ₡145/kWh a 10 años con una tasa del 8\,\%.
+  \item T-CO con EMS: unos 30 años (₡161/kWh).
+  \item Sin EMS no se recupera.
+  \item Con la mitad del uso supuesto no se recupera en ningún escenario.
+  \item Una fase inicial solo con CA tampoco se paga con ₡99,70/kWh: el ingreso por kWh en CA es bajo frente a la demanda y la inversión común.
+  \end{itemize}
+  En conclusión, \textbf{como negocio no es viable con los precios de referencia}, mientras que \textbf{como servicio institucional sí lo es}. El costo de operación de unos ₡98/kWh (T-CS con EMS) es parecido al precio público de CA, y la inversión se justifica como infraestructura de movilidad sostenible.
+\item \textbf{Mantenimiento y repuestos:}
+  \begin{itemize}
+  \item Para los equipos UL, un fabricante principal (Autel) con garantía de 2 a 3 años, representación regional y repuestos de cables y conectores en sitio.
+  \item El riesgo mayor está en los equipos GB/T, que tienen soporte local incierto. Se mitiga con una garantía exigida por contrato o con el uso del cargador que entrega BYD.
+  \end{itemize}
+\item \textbf{Expansión:} los dos puntos de CA adicionales son inmediatos (T-VE y TD-AC tienen reserva). Un segundo cargador de CC usaría el ducto de reserva, pero requiere un nuevo estudio de capacidad.
+\end{itemize}
+
+\subsection{Riesgos y medidas de mitigación}
+{\small
+\begin{longtable}{L{2.2cm}L{5.4cm}L{7.4cm}}
+\caption{Riesgos y medidas propuestas.}\label{tab:riesgos}\\
+\toprule
+\textbf{Tipo} & \textbf{Riesgo} & \textbf{Medida}\\
+\midrule\endfirsthead
+\toprule
+\textbf{Tipo} & \textbf{Riesgo} & \textbf{Medida}\\
+\midrule\endhead
+Eléctrico & Contacto con partes energizadas, cable dañado, falla a tierra en el vehículo & EVSE listados con CCID e IMD, RCD tipo B en los equipos IEC, EGC continuo, desconexión bloqueable, inspección mensual de cables y EPO\\
+Eléctrico & Arco eléctrico al operar tableros de 480~V & Rótulo de riesgo de arco (110.16), espacio de trabajo y trabajo desenergizado con bloqueo y etiquetado\\
+Incendio & Sobrecalentamiento de conexiones o incendio de una batería & Conductores al 125\,\%, termografía semestral, extintor, separación de la celda y de los vehículos, EPO y protocolo para Bomberos\\
+Incendio & Adaptadores no aprobados & Rótulos que los prohíben (secc.~\ref{sec:compat}); el diseño no los necesita\\
+Ambiental & Lluvia, inundación local, rayos, corrosión & Bases elevadas, NEMA 3R/4 o IP54, SPD tipo 1 y tipo 2, herrajes inoxidables\\
+Ambiental & Disposición de equipos al final de su vida & Retiro por el proveedor según el manejo de residuos electrónicos\\
+Circulación & Choque de vehículos con los equipos & Bolardos, topes de rueda, isla elevada y celda fuera de la zona de rodamiento\\
+Circulación & Cables en el piso y tropiezos & Gestores de cable y espacios de 2,6--2,8~m\\
+Circulación & Ocupación de espacios por vehículos que no cargan & Señalización, tiempo máximo y control por la aplicación\\
+Regulatorio & Cambio de requisitos por el reglamento del MINAE (dic. 2026) y las tarifas de ARESEP & Revisión del diseño antes de construir y medición por sesión ya prevista\\
+Capacidad & Transformador del ICE sin capacidad suficiente & Estudio del ICE antes de comprar y límite del EMS ajustable\\
+\bottomrule
+\end{longtable}}
+
+\subsection{Trámites, permisos, inspecciones y coordinación}
+\label{sec:tramites}
+\begin{enumerate}
+\item \textbf{Autorización de la UTN} como propietaria y definición del operador y del modelo de servicio: institucional o con venta.
+\item \textbf{Consulta previa al ICE} (Ley 10937, art. 31), solicitud del servicio nuevo y estudio de capacidad del transformador 119688.
+\item \textbf{Diseño y registro en el CFIA} (APC): planos eléctricos y civiles firmados, y contratos de consultoría y dirección técnica.
+\item \textbf{Permiso municipal} (Control Constructivo de Alajuela) para la zanja, las bases y el cerramiento; consulta a la Ingeniería de Bomberos.
+\item \textbf{Compra} con la verificación documental de los certificados de los equipos: UL y, para los GB/T, el certificado IEC/GB del organismo acreditado.
+\item \textbf{Construcción e inspección} por el director técnico; pruebas de aislamiento, continuidad, resistencia de tierra, RCD/CCID, EPO y EMS.
+\item \textbf{Declaración jurada} del RTCR 458 (art. 5.1.3), inspección del ICE, instalación del medidor y conexión.
+\item \textbf{Puesta en marcha:} configuración OCPP, EMS y tarifas; capacitación; póliza de responsabilidad civil y, si se vende el servicio, registro ante ARESEP cuando el reglamento lo defina.
+\end{enumerate}
+
+% =====================================================================
+\section{Conclusiones}
+\begin{enumerate}
+\item \textbf{Comparación de modalidades, cargadores y vehículos.}
+  \begin{itemize}
+  \item La carga en CA de Nivel 2 (Modo 3) es la más adecuada para un campus. Recupera del 20 al 80\,\% de un automóvil o SUV en 4 a 6~h y su costo por punto es una fracción del de la carga rápida.
+  \item La carga rápida en CC (Modo 4) cubre la necesidad de inmediatez y las baterías grandes: la F-150 Lightning tarda 1~h~21~min en DC-1 frente a 10~h~30~min en CA.
+  \item El V2V, el V2H y el V2G existen solo en combinaciones documentadas por cada fabricante. El V2G no es viable hoy en Costa Rica.
+  \item De los siete cargadores comparados se eligieron tres modelos, y la selección la definieron el listado y los conectores, no solo la potencia.
+  \end{itemize}
+\item \textbf{Requisitos normativos de mayor influencia.}
+  \begin{itemize}
+  \item El NEC 2020, art.~625, oficializado por el RTCR 458, fijó el dimensionamiento al 125\,\%, los circuitos individuales, la desconexión y la protección del personal.
+  \item La Ley 10937 y el reglamento de la Ley 9518 llevaron a un servicio con medición propia, la medición por sesión, la póliza y los equipos conformes con INTE/IEC 61851.
+  \item Las tarifas del ICE, con su cargo por demanda, justificaron el EMS y la potencia de 60~kW.
+  \item El RTCR 458 (art.~5.3) obligó a tratar de forma especial los equipos GB/T sin listado UL.
+  \end{itemize}
+\item \textbf{Importancia de verificar la compatibilidad y las condiciones reales de potencia y energía.}
+  \begin{itemize}
+  \item El BYD Dolphin vendido en Costa Rica usa GB/T, mientras que el mismo modelo en Europa usa Tipo 2/CCS2. Si se hubiera supuesto ``un conector universal'', la estación habría dejado fuera a la flota china oficial.
+  \item A 208~V, un EVSE de 40~A entrega 8,3~kW y no 9,6~kW.
+  \item En CC, la potencia cae con el SOC: cargar del 20 al 100\,\% tarda más del doble que del 20 al 80\,\%.
+  \item El límite efectivo siempre es el menor entre el vehículo, el EVSE y el suministro.
+  \end{itemize}
+\item \textbf{Viabilidad.} La estación es técnicamente viable. En lo económico se justifica como servicio institucional, con un costo de operación de unos ₡98/kWh (T-CS con EMS), pero no como negocio con los precios de referencia de la red pública.
+\item \textbf{Limitaciones y estudios pendientes:}
+  \begin{itemize}
+  \item El estudio de capacidad del ICE y la confirmación en sitio del nicho y de la ruta de 120~m.
+  \item El acceso al texto de INTE N121 y N120, para confirmar los valores de iluminación, señalización y dimensiones.
+  \item La confirmación de las dimensiones de los espacios con el reglamento de la Ley 7600 y con el reglamento de construcciones.
+  \item Cotizaciones locales de los equipos: el precio de DC-1 es una estimación.
+  \item La certificación de los equipos GB/T y su conexión a 208~V.
+  \item El reglamento técnico del MINAE y las tarifas de ARESEP que exige la Ley 10937.
+  \item Mediciones de uso real para validar el escenario de demanda.
+  \end{itemize}
+\end{enumerate}
