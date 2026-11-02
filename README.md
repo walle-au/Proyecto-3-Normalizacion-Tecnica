@@ -4,7 +4,7 @@
 
 Proyecto No. 3 del curso **EL-4601 Normalización Técnica para Electrónica** (Instituto Tecnológico de Costa Rica, II Semestre 2026).
 
-📄 **Informe completo:** [`Informe_Técnico.pdf`](Informe_Técnico.pdf) · 📐 **Láminas:** [`laminas/`](laminas/) · 🧮 **Cálculos:** [`calc/`](calc/)
+📄 **Informe completo:** [`Informe_Técnico.pdf`](Informe_Técnico.pdf) · 📐 **Láminas:** [`laminas/`](laminas/) · 🧮 **Cálculos:** [`calc/`](calc/) · 🎤 **Presentación oral:** [`presentacion/`](presentacion/)
 
 ![Lámina VE-01: planta de la estación](laminas/VE-01.png)
 
@@ -38,7 +38,8 @@ Proyecto No. 3 del curso **EL-4601 Normalización Técnica para Electrónica** (
 ├── calc/                    electrico.py, carga.py, economico.py y sus *_out.txt
 ├── laminas/                 VE-00 a VE-03 (PDF A3 + PNG); src/ con generadores TikZ y build.sh
 ├── figuras/                 Imagen satelital (Esri z18/z19) y extractos del P2 (E01, E07)
-└── Datasheets/              Fichas de los equipos seleccionados y comparados, BYD Dolphin CR, Decreto 41428
+├── Datasheets/              Fichas de los equipos seleccionados y comparados, BYD Dolphin CR, Decreto 41428
+└── presentacion/            Presentación oral (PPTX + PDF) y su generador (src/build_deck.js)
 ```
 
 | Lámina | Contenido |

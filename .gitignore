@@ -11,3 +11,10 @@
 # Python
 __pycache__/
 *.pyc
+# Node
+node_modules/
+# Guion de la presentación (solo local)
+presentacion/guia/
+presentacion/src/guion.json
+presentacion/src/gen_guion.py
+presentacion/*_con_notas.pptx
